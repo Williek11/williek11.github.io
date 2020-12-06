@@ -2,15 +2,40 @@
 <html style="background:#000">
 <head>
     <title>Williek11's Hangout</title>
-    <style>@import url('https://fonts.googleapis.com/css?family=Oxanium');p,body{margin:0;padding:0}@keyframes body {from{opacity:0;transform:translateY(-50px)}to{opacity:1}}</style>
+    <style>@import url('https://fonts.googleapis.com/css?family=Oxanium');p,body{margin:0;padding:0}
+    @keyframes body {from{opacity:0;transform:translateY(-50px)}to{opacity:1}}
+    @keyframes appear{from{opacity:0;transform:translateY(50px)}to{opacity:1}}
+    section{position:relative;height:200px;width:calc(100% - 150px);top:100px;background:#fff;box-shadow:0 5px #0001;margin-bottom:200px}
+    img{position:absolute;left:0;height:200px}
+    </style>
 </head>
 <body style="text-align:center;animation:body 1 1s;color:#fff;font-family:Oxanium">
-    <div style="background:#111;width:100%;height:400px">
-        <div style="height:75px;top:calc(50% - 37.5px);position:relative">
-            <p style="font-size:50px;margin-bottom:10px">Hello everyone!</p>
-            <p style="font-size:25px;" id="text">This is my personal Sandbox!</p>
-        </div>
+    <div style="background:url(https://raw.githubusercontent.com/Williek11/williek11.github.io/main/Files/Start.png);background-size:100%;width:100%;height:500px;">
+        <div style="width:100%;height:500px;background:#0009;position:absolute"></div>
+        <p style="text-align:center;top:225px;font-size:50px;position:relative;z-index:10">Just some nature drawings.</p>
     </div>
-    <script>var txt=document.getElementById("text");var msgs="This is my personal Sandbox!";var i=28;var f2=()=>{if(i<47){txt.innerHTML+=msgs[i];i++;setTimeout(f2,100)}};var f1=()=>{if(i>-1){txt.innerHTML=msgs.slice(0,i);i--;setTimeout(f1,100)}else{i=0;msgs="So anyway, here are some waste-your-time games.";setTimeout(f2,1000)}};setTimeout(()=>{f1()},2500)</script>
+    <div style="height:1600px;width:100%;background:#eee">
+        <section id="s1">
+            <img src="https://raw.githubusercontent.com/Williek11/williek11.github.io/main/Files/Fireweed-flower.png"/>
+        </section>
+        <section id="s2" style="left:150px"></section>
+        <section id="s3"></section>
+    </div>
+    <script>
+    var ids=[["s1",false],["s2",false],["s3",false]],l=(a)=>{return document.getElementById(a)}
+    for(var i=0;i<ids.length;i++){l(ids[i][0]).style.opacity="0"}
+    window.addEventListener("scroll",()=>{
+        var valid_ids=[];
+        for(var i=0;i<ids.length;i++){if(ids[i][1]===false){valid_ids.push(i)}};
+        for(var i=0;i<valid_ids.length;i++){
+            var dom=l(ids[valid_ids[i]][0]);
+            var obj=dom.getBoundingClientRect();
+            if (obj.y - window.innerHeight < -50) {
+                dom.style.animation="appear forwards 1 1s";
+                ids[i][1]=true;
+            }
+        }
+    })
+    </script>
 </body>
 </html>
