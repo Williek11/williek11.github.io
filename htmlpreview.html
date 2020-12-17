@@ -3,7 +3,12 @@
 <script>
 var href=window.location.href,h=document.querySelector("html")
 if(href.includes("?")){
-  h.innerHTML=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
+  var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
+  if(txt.includes("<html ")){
+    var tagIndex=txt.indexOf("<html ",44)+5
+    txt=txt.substr(tagIndex,txt.indexOf(">",49)-tagIndex)
+  }
+  h.innerHTML=txt
 }
 else{h.innerHTML="Hello! This is a test website. Insert ? at the end of the link and you can put HTML code afterwards!"}
 </script>
