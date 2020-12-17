@@ -10,8 +10,8 @@ if(href.includes("?")){
   if(txt.includes("type:")){
      var val=txt.indexOf("type:",0)+5;
      var pre=document.getElementById("predefined")
-     var str=decodeURIComponent(txt.substr(val-5,txt.indexOf("_HTML:",0)-val+11))
-     var types=str.replace("type:","").replace("_HTML:","").split("&")
+     var str=decodeURIComponent(txt.substr(val-5,txt.indexOf(":",6)-val+6))
+     var types=str.replace("type:","").replace(":","").split("&")
      var cssAdd=(css)=>{pre.innerHTML+=css}
      for(var i=0;i<types.length;i++) {
        switch (types[i]) {
