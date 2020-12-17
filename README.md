@@ -1,9 +1,11 @@
 # Williek11.github.io
-###### https://williek11.github.io
+https://williek11.github.io
+
 A repository for random projects which I feel like they would be nice for the world to see.
 
 # Html Previewer
-###### https://williek11.github.io/htmlpreview.html
+https://williek11.github.io/htmlpreview.html
+
 A project where you can add all the HTML you would ever want in the link. It's nothing too much, but I thought it were a nice addition to the web.
 The way in which you add HTML is putting a questionmark at the end and inserting the HTML (?HTML).
 There are also built-in little styles that are convenient to have; instead of putting ?HTML to the end of the link, you put ?type:Type:HTML
@@ -11,7 +13,7 @@ There are also built-in little styles that are convenient to have; instead of pu
 Currently, three types are available; fonts, clean, and styleless.
 Fonts add a font-family between the most widely available. They are choosen between Arial, Verdana, Tahoma, and Trebuchet MS.
 Clean removes margin and padding of html and body tags.
-Styleless removes margin, padding, border and background, unsets width and height and sets display to block to all elements; giving you the choice of styling them all.
+Styleless removes margin, padding, border and background, and unsets width and height of all elements; giving you the choice of styling them all.
 
 You can put multiple of them; just separate them with & (fonts&clean&styleless)
 
