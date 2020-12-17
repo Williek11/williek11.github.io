@@ -2,7 +2,7 @@
 <html></html>
 <style id="predefined"></style>
 <script>
-var href=window.location.href,h=document.querySelector("html")
+var href=`https://williek11.github.io/htmlpreview.html?type:fancytext&clean_HTML:UWU`,h=document.querySelector("html")
 if(href.includes("?")){
   
   var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
@@ -10,12 +10,16 @@ if(href.includes("?")){
   if(txt.includes("type:")){
      var val=txt.indexOf("type:",0)+5;
      var pre=document.querySelector("#predefined")
-     var types=decodeURIComponent(txt.substr(val,txt.indexOf("_HTML:",0)-val+4)).split("&")
-     for(var i=0;i<types.length;i++){
+     var str=decodeURIComponent(txt.substr(val-5,txt.indexOf("_HTML:",0)-val+11))
+     var types=str.replace("type:","").replace("_HTML:","").split("&")
+     var cssAdd=(css)=>{pre.innerHTML+=css}
+     for(var i=0;i<types.length;i++) {
        switch (types[i]) {
-         case "fancytext":h.style.color="#f0f"
+         case "fancytext":cssAdd("html{color:#f0f"});break
+         case "clean":cssAdd("html,body{padding:0;margin:0}");break
        }
      }
+    txt=txt.replace(str,"")
   }
   
   /*if(txt.includes("<html ")){
