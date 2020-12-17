@@ -4,10 +4,21 @@
 var href=window.location.href,h=document.querySelector("html")
 if(href.includes("?")){
   var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
-  if(txt.includes("<html ")){
-    var tagIndex=txt.indexOf("<html ",43)+5
-    txt=txt.substr(tagIndex,txt.indexOf(">",48)-tagIndex)
-  }
+  /*if(txt.includes("<html ")){
+    var atrs=[],quotation=[];
+    var tagIndex=txt.indexOf("<html ",0)+5
+    var search=txt.substr(tagIndex,txt.indexOf(">",tagIndex)-tagIndex)
+    for(var i=0,initial=true,l=search.length;i<l;i++){var s=search[i];if(s==="'"||s===`"`||s==="`"){
+      var arr=[];
+      arr[0]=i
+      if(initial){arr[1]=true;initial=false}else{arr[1]=false;initial=true}
+      quotation.push(arr)
+    }}
+    for(var i=0;i<quotation.length;i++){if(i!==1){
+    
+    }}
+    txt=quotation
+  }*/
   h.innerHTML=txt
 }
 else{h.innerHTML="Hello! This is a test website. Insert ? at the end of the link and you can put HTML code afterwards!"}
