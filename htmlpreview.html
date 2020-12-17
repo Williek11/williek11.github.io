@@ -2,16 +2,17 @@
 <style id="predefined"></style>
 <html></html>
 <script>
-var href=window.location.href,h=document.querySelector("html")
+var href=decodeURIComponent(window.location.href),h=document.querySelector("html")
+function wheninput(){var is="https://williek11.github.io/htmlpreview.html?"+document.querySelector("#html").value;var link=document.querySelector("#link");link.innerHTML=is;link.href=is}
 if(href.includes("?")){
   
-  var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
+  var txt=href.substr(href.indexOf("?",43)+1,href.length)
   var html=txt
   
   if(txt.includes("type:")){
      var val=txt.indexOf("type:",0)+5;
      var pre=document.getElementById("predefined")
-     var str=decodeURIComponent(txt.substr(val-5,txt.indexOf(":",6)-val+6))
+     var str=txt.substr(val-5,txt.indexOf(":",6)-val+6)
      var types=str.replace("type:","").replace(":","").split("&")
      var cssAdd=(css)=>{pre.innerHTML+=css}
      for(var i=0;i<types.length;i++) {
@@ -20,7 +21,7 @@ if(href.includes("?")){
          case "clean":cssAdd("html,body{padding:0;margin:0}");break
          case "styleless":cssAdd("*{margin:0;padding:0;border:0;background:0;width:unset;height:unset}");break
          case "edit":
-           html=`<textarea style="width:calc(100% - 40px);height:400px;resize:none;padding:20px" id="html">${txt}</textarea>`
+           html=`<textarea oninput="wheninput()" style="width:calc(100% - 40px);height:400px;resize:none;padding:20px" id="html">${txt}</textarea><a id="link" href="${href}">${href}</a>`
            break
        }
      }
