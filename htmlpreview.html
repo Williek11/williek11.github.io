@@ -4,15 +4,18 @@
 <script>
 var href=window.location.href,h=document.querySelector("html")
 if(href.includes("?")){
-  if(href.includes("-"){
-     var val=href.indexOf("-",43)+1;
+  
+  var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
+  
+  if(txt.includes("type:"){
+     var val=txt.indexOf("type:",0)+5;
      var pre=document.querySelector("#predefined")
-     var types=decodeURIComponent(href.substr(val,href.indexOf("?",43)-val+1)).split("&")
+     var types=decodeURIComponent(txt.substr(val,txt.indexOf("_HTML:",0)-val+4)).split("&")
      for(var i=0;i<types.length;i++){switch(types[i]){
       case "fancytext":h.style.color="#f0f"}
      }
   }
-  var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
+  
   /*if(txt.includes("<html ")){
     var atrs=[],quotation=[];
     var tagIndex=txt.indexOf("<html ",0)+5
