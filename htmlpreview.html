@@ -15,8 +15,9 @@ if(href.includes("?")){
      var cssAdd=(css)=>{pre.innerHTML+=css}
      for(var i=0;i<types.length;i++) {
        switch (types[i]) {
-         case "fancytext":cssAdd("html{color:#f0f}");break
+         case "fonts":cssAdd("html{font-family:Arial, Verdana, Tahoma, Trebuchet MS}");break
          case "clean":cssAdd("html,body{padding:0;margin:0}");break
+         case "styleless":cssAdd("*{margin:0;padding:0;border:0;background:0}")
        }
      }
     txt=txt.replace(str,"")
