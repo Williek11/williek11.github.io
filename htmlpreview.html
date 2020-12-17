@@ -1,8 +1,17 @@
 <!-- im doing this on my phone lol -->
 <html></html>
+<style id="predefined"></style>
 <script>
 var href=window.location.href,h=document.querySelector("html")
 if(href.includes("?")){
+  if(href.includes("/"){
+     var val=href.indexOf("/",43)+1;
+     var pre=document.querySelector("#predefined")
+     var types=decodeURIComponent(href.substr(val,href.indexOf("?",43)-val+1)).split("&")
+     for(var i=0;i<types.length;i++){switch(types[i]){
+      case "fancytext":h.style.color="#f0f"}
+     }
+  }
   var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
   /*if(txt.includes("<html ")){
     var atrs=[],quotation=[];
