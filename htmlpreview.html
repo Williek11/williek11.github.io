@@ -1,7 +1,6 @@
 <!-- im doing this on my phone lol -->
 <html><body></body></html>
 <script>
-document.body.innerHTML="ok"
 var href=window.location.href;
 document.body.innerHTML=href
-document.body.innerHTML=href.substr(href.indexOf("?replace=",1)+8,href.length)</script>
+document.body.innerHTML=decodeURIComponent(href.substr(href.indexOf("?replace=",1)+9,href.length))</script>
