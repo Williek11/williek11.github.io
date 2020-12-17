@@ -9,7 +9,7 @@ if(href.includes("?")){
   
   if(txt.includes("type:")){
      var val=txt.indexOf("type:",0)+5;
-     var pre=document.querySelector("#predefined")
+     var pre=document.getElementById("predefined")
      var str=decodeURIComponent(txt.substr(val-5,txt.indexOf("_HTML:",0)-val+11))
      var types=str.replace("type:","").replace("_HTML:","").split("&")
      var cssAdd=(css)=>{pre.innerHTML+=css}
@@ -37,7 +37,7 @@ if(href.includes("?")){
     }}
     txt=quotation
   }*/
-  h.innerHTML=txt
+  h.innerHTML+=txt
 }
 else{h.innerHTML="Hello! This is a test website. Insert ? at the end of the link and you can put HTML code afterwards!"}
 </script>
