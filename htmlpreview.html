@@ -6,6 +6,7 @@ var href=window.location.href,h=document.querySelector("html")
 if(href.includes("?")){
   
   var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
+  var html=txt
   
   if(txt.includes("type:")){
      var val=txt.indexOf("type:",0)+5;
@@ -19,11 +20,11 @@ if(href.includes("?")){
          case "clean":cssAdd("html,body{padding:0;margin:0}");break
          case "styleless":cssAdd("*{margin:0;padding:0;border:0;background:0;width:unset;height:unset}");break
          case "edit":
-           txt=`<textarea value="${txt}"style="width:calc(100% - 40px);height:400px;resize:none;padding:20px"></textarea>`
+           html=`<textarea style="width:calc(100% - 40px);height:400px;resize:none;padding:20px" id="html">${txt}</textarea>`
            break
        }
      }
-    txt=txt.replace(str,"")
+    html=html.replace(str,"")
   }
   
   /*if(txt.includes("<html ")){
@@ -41,7 +42,7 @@ if(href.includes("?")){
     }}
     txt=quotation
   }*/
-  h.innerHTML=txt
+  h.innerHTML=html
 }
 else{h.innerHTML="Hello! This is a test website. Insert ? at the end of the link and you can put HTML code afterwards!"}
 </script>
