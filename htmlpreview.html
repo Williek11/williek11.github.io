@@ -5,8 +5,8 @@ var href=window.location.href,h=document.querySelector("html")
 if(href.includes("?")){
   var txt=decodeURIComponent(href.substr(href.indexOf("?",43)+1,href.length))
   if(txt.includes("<html ")){
-    var tagIndex=txt.indexOf("<html ",44)+5
-    txt=txt.substr(tagIndex,txt.indexOf(">",49)-tagIndex)
+    var tagIndex=txt.indexOf("<html ",43)+5
+    txt=txt.substr(tagIndex,txt.indexOf(">",48)-tagIndex)
   }
   h.innerHTML=txt
 }
