@@ -21,7 +21,7 @@ if(href.includes("?")){
          case "clean":cssAdd("html,body{padding:0;margin:0}");break
          case "styleless":cssAdd("*{margin:0;padding:0;border:0;background:0;width:unset;height:unset}");break3
          case "edit":
-           html=`<textarea oninput="wheninput()" style="width:calc(100% - 40px);height:400px;resize:none;padding:20px" id="html">${txt}</textarea><a id="link"></a>`
+           html=`<textarea oninput="wheninput()" style="border:#666 2px solid;border-radius:5px;box-shadow:0 5px #0005;width:calc(100% - 44px);height:400px;resize:none;padding:20px" id="html">${txt}</textarea><a id="link"></a>`
            break
        }
      }
