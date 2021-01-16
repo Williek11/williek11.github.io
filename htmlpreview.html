@@ -1,8 +1,10 @@
-<!-- im doing this on my phone lol -->
-<style id="predefined"></style>
-<html></html>
+<html>
+<head>
+   <style id="predefined"></style>
+</head>
+<body>
 <script>
-var href=decodeURIComponent(window.location.href),h=document.querySelector("html")
+var href=decodeURIComponent(window.location.href),h=document.querySelector("body");
 function wheninput(){var is="https://williek11.github.io/htmlpreview.html?"+document.querySelector("#html").value;var link=document.querySelector("#link");link.innerHTML=is;link.href=is}
 if(href.includes("?")){
   
@@ -46,3 +48,5 @@ if(href.includes("?")){
 }
 else{h.innerHTML="Hello! This is a test website. Insert ? at the end of the link and you can put HTML code afterwards!"}
 </script>
+</body>
+</html>
