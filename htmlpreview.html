@@ -8,17 +8,27 @@ var href=decodeURIComponent(window.location.href),
     h=document.body,
     getClass=function(i){return document.getElementsByClassName(i)},
     getId=function(i){return document.getElementById(i)},
-    addScriptWithText=function(txt,node){node.appendChild(document.createElement('script').appendChild(document.createTextNode(txt)))},
+    addScriptWithText=function(txt,node){var scr=document.createElement('script').appendChild(document.createTextNode(txt));node.appendChild(scr)},
     loadScripts=[];
 function wheninput(){var is="https://williek11.github.io/htmlpreview.html?"+getId("code").value;var link=getId("link");link.innerText=is;link.href=is}
 function whenPreview(){
    // event listener and css stuff
-   getId("edit").addEventListener("click",whenEdit).className="inactive";getId("preview").removeEventListener("click",whenPreview).className="active"
-
+   getId("edit")
+      .className="inactive";
+      .addEventListener("click",whenEdit)
+   getId("preview")
+      .className="active"
+      .removeEventListener("click",whenPreview)
 }
 function whenEdit(){
    // event listener and css stuff
-   getId("edit").removeEventListener("click",whenEdit).className="active";getId("preview").addEventListener("click",whenPreview).className="inactive"}
+   getId("edit")
+      .removeEventListener("click",whenEdit)
+      .className="active";
+   getId("preview")
+      .addEventListener("click",whenPreview)
+      .className="inactive"
+}
 if(href.includes("?")){
   
   var txt=href.substr(href.indexOf("?",43)+1,href.length)
@@ -38,13 +48,13 @@ if(href.includes("?")){
          case "edit":
            cssAdd(`
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
-#modes div{margin-left: 20px;width: 100px;height: 25px;border-radius: 10px 10px 0 0;cursor:pointer}
+#modes div{margin-left: 20px;width: 100px;height: 25px;border-radius: 10px 10px 0 0}
 .active{background: #888;color:#fff}
-.inactive{background: none;color:#888}`)
+.inactive{background: none;color:#888;cursor:pointer}`)
            html=`
 <div id="modes" style="border-bottom: 2px #999 solid;margin-bottom: 10px;display: flex;font-family: Rowdies;text-align: center;line-height: 25px;">
     <div class="active" id="edit">Edit Code</div>
-    <div class="inactive" onclick="whenPreview()" id="preview">Preview</div>
+    <div class="inactive" id="preview">Preview</div>
 </div>
 <textarea oninput="wheninput()" style="margin-bottom: 10px;border:#0006 2px solid;border-radius:5px;box-shadow:0 5px #0005;width:calc(100% - 44px);height:400px;resize:none;padding:20px" id="code">${txt}</textarea>
 <a id="link" style="color:#888;font-family:Rowdies;font-weight: 100;display:block;word-wrap: break-word;width:100%"></a>`
