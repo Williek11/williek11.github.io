@@ -8,17 +8,17 @@ var href=decodeURIComponent(window.location.href),
     h=document.body,
     getClass=function(i){return document.getElementsByClassName(i)},
     getId=function(i){return document.getElementById(i)},
-    addScriptWithText=function(txt,node){var scr=document.createElement('script').appendChild(document.createTextNode(txt));node.appendChild(scr)},
+    addScriptWithText=function(txt,node){var scr=document.createElement('script');scr.innerText=txt;node.appendChild(scr)},
     loadScripts=[];
 function wheninput(){var is="https://williek11.github.io/htmlpreview.html?"+getId("code").value;var link=getId("link");link.innerText=is;link.href=is}
 function whenPreview(){
    // event listener and css stuff
-   getId("edit")
-      .className="inactive"
-      .addEventListener("click",whenEdit)
-   getId("preview")
-      .className="active"
-      .removeEventListener("click",whenPreview)
+   var id1 = getId("edit");
+   id1.className="inactive"
+   id1.addEventListener("click",whenEdit)
+   var id2 = getId("preview")
+   id2.className="active"
+   id2.removeEventListener("click",whenPreview)
 }
 function whenEdit(){
    // event listener and css stuff
