@@ -23,8 +23,18 @@ if(href.includes("?")){
          case "clean":cssAdd("html,body{padding:0;margin:0}");break
          case "styleless":cssAdd("*{margin:0;padding:0;border:0;background:0;width:unset;height:unset}");break
          case "edit":
-           cssAdd("@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');")
-           html=`<textarea oninput="wheninput()" style="color:#888;font-family:Rowdies;font-weight: 100;margin-bottom: 10px;border:#0006 2px solid;border-radius:5px;box-shadow:0 5px #0005;width:calc(100% - 44px);height:400px;resize:none;padding:20px" id="code">${txt}</textarea><a id="link" style="display:block;word-wrap: break-word;width:100%"></a>`
+           cssAdd(`
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
+#modes div{width: 100px;height: 25px;border-radius: 10px 10px 0 0;cursor:pointer}
+.active{background: #888;color:#fff}
+.inactive{background: none;color:#888}`)
+           html=`
+<div id="modes" style="border-bottom: 2px #999 solid;margin-bottom: 10px;display: flex;font-family: Rowdies;text-align: center;line-height: 25px;">
+    <div class="active">Edit Code</div>
+    <div class="inactive">Preview</div>
+</div>
+<textarea oninput="wheninput()" style="margin-bottom: 10px;border:#0006 2px solid;border-radius:5px;box-shadow:0 5px #0005;width:calc(100% - 44px);height:400px;resize:none;padding:20px" id="code">${txt}</textarea>
+<a id="link" style="color:#888;font-family:Rowdies;font-weight: 100;display:block;word-wrap: break-word;width:100%"></a>`
            break
        }
      }
