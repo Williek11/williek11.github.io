@@ -22,12 +22,12 @@ function whenPreview(){
 }
 function whenEdit(){
    // event listener and css stuff
-   getId("edit")
-      .removeEventListener("click",whenEdit)
-      .className="active"
-   getId("preview")
-      .addEventListener("click",whenPreview)
-      .className="inactive"
+   var id1 = getId("edit");
+   id1.className="active"
+   id1.removeEventListener("click",whenEdit)
+   var id2 = getId("preview")
+   id2.className="inactive"
+   id2.removeEventListener("click",whenPreview)
 }
 if(href.includes("?")){
   
