@@ -27,7 +27,7 @@ function whenEdit(){
    id1.removeEventListener("click",whenEdit)
    var id2 = getId("preview")
    id2.className="inactive"
-   id2.removeEventListener("click",whenPreview)
+   id2.addEventListener("click",whenPreview)
 }
 if(href.includes("?")){
   
