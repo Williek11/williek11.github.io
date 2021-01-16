@@ -14,7 +14,7 @@ function wheninput(){var is="https://williek11.github.io/htmlpreview.html?"+getI
 function whenPreview(){
    // event listener and css stuff
    getId("edit")
-      .className="inactive";
+      .className="inactive"
       .addEventListener("click",whenEdit)
    getId("preview")
       .className="active"
@@ -24,7 +24,7 @@ function whenEdit(){
    // event listener and css stuff
    getId("edit")
       .removeEventListener("click",whenEdit)
-      .className="active";
+      .className="active"
    getId("preview")
       .addEventListener("click",whenPreview)
       .className="inactive"
