@@ -9,6 +9,7 @@ var href=decodeURIComponent(window.location.href),
     getClass=function(i){return document.getElementsByClassName(i)},
     getId=function(i){return document.getElementById(i)},
     addScriptWithText=function(txt,node){var scr=document.createElement('script');scr.innerText=txt;node.appendChild(scr)},
+    addToLoad=function(type,node,code){loadScripts.push({type: type, node: node, code: code})}
     loadScripts=[];
 function wheninput(){var is="https://williek11.github.io/htmlpreview.html?"+getId("code").value;var link=getId("link");link.innerText=is;link.href=is}
 function whenPreview(){
@@ -71,7 +72,7 @@ if(href.includes("?")){
       <div id="preview_body" style="margin:8px"></div>
    </div>
 </div>`
-           loadScripts.push({type: "txt", node: h, code: "getId('preview').addEventListener('click',whenPreview)"})
+           addToLoad("txt",h,"getId('preview').addEventListener('click',whenPreview);wheninput()")
            break
        }
      }
