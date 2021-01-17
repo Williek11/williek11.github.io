@@ -68,12 +68,12 @@ bS.id="black_screen"
 body.appendChild(bS)
 
 var l=cards.length;
-loop(function(){const self=i;let card=getClass("card_edit",self)});
+loop(function(){const self=i;let card=getClass("card_edit",self);
 card.addEventListener("click",function(){
    card=getClass("card_edit",self);
    if(card.innerHTML==="EDIT"){edit_card(self)}
    else{done_card_edit(self)}
-})}
+})})
 
 loop(function(){const s=i;card=getClass("card",s);cardsInfo[s] = [card.offsetLeft, card.offsetTop, card.offsetWidth, card.offsetHeight]})
 loop(function(){var card = getClass("card",i);card.style.position="absolute";card.style.left=cardsInfo[i][0]+"px";card.style.top=cardsInfo[i][1]+"px"})
