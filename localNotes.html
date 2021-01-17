@@ -31,6 +31,8 @@ var newCard = function(card, made){var nC = document.createElement("div");nC.cla
    cCaA("card_title",card.title);cCaA("card_date",made.day+l+made.month+l+made.year);cCaA("card_txt",card.content);cCaA("card_edit","EDIT")
    frag.appendChild(nC)
 }
+var l=cards.length;
+  
 for(var i = 0;i < l;i++) {newCard(cards[i], cards[i].made)}
 body.appendChild(frag)
 var bS=document.createElement("div");
@@ -47,7 +49,7 @@ var edit_card = function(i){
 
    bS.style.opacity="1";bS.style.pointerEvents="auto"
 
-   var card = cI[4];
+   var card = cI[2];
    card.style.zIndex="2"
    card.style.left = "calc(50% - 150px)"
    card.style.top = "calc(50% - 200px)"
@@ -68,7 +70,6 @@ var done_card_edit = function(i){
    card.style.zIndex="0"
 }
 
-var l=cards.length;
 for(var i = 0;i < l;i++) {const self=i;let card=getClass("card_edit",self);
 card.addEventListener("click",function(){
    card=getClass("card_edit",self);
