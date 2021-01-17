@@ -1,94 +1,195 @@
 <html>
 <head>
-<style>@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
+</head>
+<body><script>
+var timer = {all: {},start: function (id, desc) {timer.all[id]={start: Date.now(), desc: desc}}};timer.start("Page Load Time", "The time it takes for the page to load in its entirety.")
+document.head.innerHTML=`<style>@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
+::selection { background: #0008; color: #eee }
+::-moz-selection { background: #0008; color:#eee }
+:focus{outline:0}
 body,html{padding:0;margin:0}body{margin:20px}
-#black_screen{z-index:1;background:#0006;position:absolute;left:0;top:0;width:100%;height:100%;transition:1s;pointer-events:none;opacity:0}
-.card{transition:1s;text-shadow: 0 1px 0 #0003;margin-right: 20px;background:#efefef;width:300px;height:400px;font-family:Rowdies;box-shadow: 0 10px #0003;position:relative}
-.card_title{font-size:22.5px;text-align:center;color:#999;margin:10px 10px 0 10px;}
+#black_screen{z-index:1;background:#0006;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0}
+.card{text-shadow: 0 1px 0 #0003;margin-right: 20px;background:#efefef;width:300px;height:400px;font-family:Rowdies;box-shadow: 0 10px #0003;position:absolute}
+.card_title{font-size:22.5px;text-align:center;color:#999;margin:10px 10px 0 10px}
 .card_date{font-size:12px;color:#aaa;border-bottom:2px #aaa solid;margin:0 10px 5px 10px;padding-bottom:5px}
 .card_txt{font-size:15px;color:#777;margin:0 10px}
 .card_edit{font-size:15px;position:absolute;background:#9f9f9f;height:30px;width:50px;right:10px;bottom:10px;line-height: 30px;text-align: center;color: #eee;box-shadow: 0 2px 0 #0006;cursor:pointer}
-</style><style id="animations"></style>
-</head>
-<body><script>
+.expanded{position:fixed;left:calc(50% - 250px) !important;top:calc(50% - 250px) !important;width:500px;height:500px;z-index:2!important}
+.card_title_expanded{background: #ddd;padding: 2px}
+.card_txt_expanded{height: 360px;padding: 10px;background: #ddd;overflow: auto}
+</style>`
 document.addEventListener("contextmenu", function(e){e.preventDefault();}, false);
 
+//////////////
+// Function //
+//////////////
+  
 (function(){
+  
+//////////
+// Logs //
+//////////
+  
+var logs = {
+  debug: function ( arr_of_contents ) { 
+    console.group("%cDebug","background:#f53636;padding:5px 10px;color:#eee;border-bottom:5px #af2b2b solid")
+    console.log("%c●%cExecuted "+new Date() + ".","color:#f53636","color:#666;padding-left:10px");
+    for(var i=0;i<arr_of_contents.length;i++){
+      console.log("%c●%c"+arr_of_contents[i],"color:#f53636","color:#666;padding-left:10px")
+    }
+    console.groupEnd();
+  },
+  func: function ( txt ) { 
+    console.group("%cFunction","background:#f18e21;padding:5px 10px;color:#eee;border-bottom:5px #d47e1e solid");
+    console.log("%c●%cExecuted "+new Date() + ".","color:#f18e21","color:#666;padding-left:10px");
+    console.log("%c●%c"+txt,"color:#f18e21","color:#666;padding-left:10px");
+    console.groupEnd();
+  },
+  perf: function ( name, start, end, delay, desc ) {
+    console.group("%cPerformance Test - "+name,"background:#3f55e9;padding:5px 10px;color:#eee;border-bottom:5px #2e3fb3 solid")
+    console.log("%c●%cStarted: "+start,"color:#3f55e9","color:#666;padding-left:10px")
+    console.log("%c●%cEnded: "+end,"color:#3f55e9","color:#666;padding-left:10px")
+    console.log("%c●%cDelay: "+delay+"ms","color:#3f55e9","color:#666;padding-left:10px")
+    console.log("%c●%cDescription: "+desc,"color:#3f55e9","color:#666;padding-left:10px")
+    console.groupEnd();
+  }
+}
+
+////////////////
+// Timer Stop //
+////////////////
+
+timer.stop = function (id) {
+  var obj = timer.all[id];
+  logs.perf(id, obj.start, Date.now(), obj.start - Date.now(), obj.desc)
+}
 var body = document.body;
-var l = ' / ';
+body.innerHTML=""
 var getClass = function(c,n){return document.getElementsByClassName(c)[n]}
 var getId = function(id){return document.getElementById(id)}
 var cardsInfo = [];
+  
+///////////
+// Cards //
+///////////
 
 // NOT based on real stories
 var cards = [{title: "I made a new friend!", made: {day: 16, month: 01, year: 2021}, content: "I met Bobby in eight grade and ever since then, we became best friends. He has a nice personality, a nice following and a nice set of skills. I would not replace him for anything."},
              {title: "I saw her...", made: {day: 16, month: 01, year: 2021}, content: "Oh my goodness, I saw my fifth grade crush after 9 years! She left in sixth grade, and that was the last time I saw her... Until now! And since I finally have all the courage to tell her... I did. And it went not well at all."},
              {title: "oh", made: {day: 16, month: 01, year: 2021}, content: "my dog died today because of sadness."},
+             {title: "I made a new friend!", made: {day: 16, month: 01, year: 2021}, content: "I met Bobby in eight grade and ever since then, we became best friends. He has a nice personality, a nice following and a nice set of skills. I would not replace him for anything."},
+             {title: "I saw her...", made: {day: 16, month: 01, year: 2021}, content: "Oh my goodness, I saw my fifth grade crush after 9 years! She left in sixth grade, and that was the last time I saw her... Until now! And since I finally have all the courage to tell her... I did. And it went not well at all."},
+             {title: "oh", made: {day: 16, month: 01, year: 2021}, content: "my dog died today because of sadness."},
 ];
-var frag = document.createElement("div");frag.style.display="flex";
-var newCard = function(card, made){var nC = document.createElement("div");nC.className="card"
-   var cCaA=function(c,txt){var t=document.createElement("div");t.className=c;t.innerText=txt;nC.appendChild(t)}
-   cCaA("card_title",card.title);cCaA("card_date",made.day+l+made.month+l+made.year);cCaA("card_txt",card.content);cCaA("card_edit","EDIT")
-   frag.appendChild(nC)
+timer.start("Document Fragment Benchmark", "Checking on how powerful Document Fragment is compared to other methods.")
+  
+// Frag
+var frag = new DocumentFragment();
+logs.func('Executing multiple "newCard" functions, used in order to create new cards and append them into the DOM Tree.');
+var newCard = function(card, made){
+  var nC = document.createElement("div");nC.className="card"
+  var cCaA=function(c,txt){var t=document.createElement("div");t.className=c;t.innerText=txt;nC.appendChild(t)}
+  cCaA("card_title",card.title);cCaA("card_date",made.day+' / '+made.month+' / '+made.year);cCaA("card_txt",card.content);cCaA("card_edit","EDIT")
+  frag.appendChild(nC)
 }
 var l=cards.length;
   
 for(var i = 0;i < l;i++) {newCard(cards[i], cards[i].made)}
 body.appendChild(frag)
 var bS=document.createElement("div");
+timer.stop("Document Fragment Benchmark")
+  
+//////////////////
+// Black Screen //
+//////////////////
+  
 bS.id="black_screen"
 body.appendChild(bS)
+logs.debug(["Black Screen, used in order to blacken the cards and other DOM objects as requested."])
 
+var bSS=bS.style;
+  
+///////////////
+// Edit Card //
+///////////////
+  
 var edit_card = function(i){
-   var cI=cardsInfo[i];
-   cI[3].contentEditable="true"
-   cI[4].contentEditable="true"
-   cI[5].contentEditable="true"
+  timer.start("Edit Card","Benchmarking it in order to make sure it is nicely optimized.")
+  logs.func('Function "edit_card", which lets you edit a certain card as you desire.')
+  var cI=cardsInfo[i];
+  cI[3].contentEditable="true";cI[5].contentEditable="true";
+  cI[3].className="card_title card_title_expanded";cI[5].className="card_txt card_txt_expanded"
 
-   cI[6].innerHTML = "DONE"
+  cI[6].innerHTML="DONE";
 
-   bS.style.opacity="1";bS.style.pointerEvents="auto"
+  bSS.opacity="1";bSS.pointerEvents="auto";
 
-   var card = cI[2];
-   card.style.zIndex="2"
-   card.style.left = "calc(50% - 150px)"
-   card.style.top = "calc(50% - 200px)"
+  var card = cI[2];
+  card.zIndex="2"
+  getClass('card',i).className="card expanded"
+  timer.stop("Edit Card")
 }
 var done_card_edit = function(i){
-   var cI=cardsInfo[i];
-   cI[3].contentEditable="false"
-   cI[4].contentEditable="false"
-   cI[5].contentEditable="false"
+  timer.start("Done Edit Card","Benchmarking it in order to make sure it is nicely optimized.")
+  logs.func('Function "done_edit_card", triggered once you are done editing a card.')
+  var cI=cardsInfo[i];
+  cI[3].contentEditable="false";cI[5].contentEditable="false";
+  cI[3].className="card_title";cI[5].className="card_txt"
 
-   cI[6].innerHTML = "EDIT"
+  cI[6].innerHTML="EDIT";
 
-   bS.style.opacity="0";bS.style.pointerEvents="none"
+  bSS.opacity="0";bSS.pointerEvents="none";
 
-   var card = cI[2];
-   card.style.left=cI[0]+"px"
-   card.style.top=cI[1]+"px"
-   card.style.zIndex="0"
+  getClass('card',i).className="card"
+  cI[2].zIndex="0"
+  timer.stop("Done Edit Card")
 }
-
-for(var i = 0;i < l;i++) {const self=i;let card=getClass("card_edit",self);
-card.addEventListener("click",function(){
-   card=getClass("card_edit",self);
-   if(card.innerHTML==="EDIT"){edit_card(self)}
+logs.debug(['Triggering loop that add an event listener into DOM objects with "card_edit" class.'])
+for(var i = 0;i < l;i++) {const self=i;getClass("card_edit",self).addEventListener("click",function(){
+   if(getClass("card_edit",self).innerHTML==="EDIT"){edit_card(self)}
    else{done_card_edit(self)}
 })}
 
-for(var i = 0;i < l;i++) {card=getClass("card",i);cardsInfo[i] = 
+function notesPerLine () {
+  return Math.floor(window.innerWidth / 320)
+}
+logs.debug(['Function "Notes Per Line" gave the following result for a call: '+notesPerLine()])
+function calcLine (i) {
+  var result; if(20 + i * 320 > window.innerWidth){
+    logs.debug(['Function "Calc Line" gave the following results for a call with the param of '+i+':',
+                '20 + i * 320: '+(20 + i * 320),
+                '[Last result] / window.innerWidth: '+((20 + i * 320) / window.innerWidth),
+                'Math.ceil((20 + i * 320) / window.innerWidth): '+(Math.ceil((20 + i * 320) / window.innerWidth))
+               ])
+    result = Math.ceil((20 + i * 320) / window.innerWidth)
+  }else{result = 1;logs.debug(['Function "Calc Line" gave the following result for a call with the param of '+i+': '+i])}return result
+}
+function calcColumn (i) {
+  while(i > notesPerLine()){i = i - notesPerLine()}
+  if(i===0){return 0} else {return i - 1}
+}
+  
+logs.debug(['Triggering loop that stores card data into "cardsInfo".'])
+for(var i = 0;i < l;i++) {card=getClass("card",i);
+                          cardsInfo[i] = 
    [
-   card.offsetLeft, 
-   card.offsetTop, 
-   card,
+   20 + calcColumn(i+1) * 320, 
+   20 + (calcLine(i+1) - 1) * 450, 
+   card.style,
    getClass("card_title",i),
    getClass("card_date",i),
    getClass("card_txt",i),
    getClass("card_edit",i)
 ]}
-for(var i = 0;i < l;i++) {var card = cardsInfo[i][2];card.style.position="absolute";card.style.left=cardsInfo[i][0]+"px";card.style.top=cardsInfo[i][1]+"px"}
-
+var appnd=document.createElement("div");appnd.style.height=`${20 + (calcLine(cards.length) - 1) * 450 + 400 + 40}px`;appnd.style.width="0.1px";body.appendChild(appnd)
+for(var i = 0;i < l;i++) {var card=getClass("card",i);
+                          card.setAttribute("data-id",i)
+                          card.setAttribute("data-line",calcColumn(i+1))
+                          card.setAttribute("data-column",calcLine(i+1) - 1)
+                          card.style.left=cardsInfo[i][0]+"px";
+                          card.style.top=cardsInfo[i][1]+"px"}
 }())
+  
+  timer.stop("Page Load Time")
 </script></body>
 </html>
