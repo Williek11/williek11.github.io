@@ -13,42 +13,13 @@ body,html{padding:0;margin:0}body{margin:20px}
 <body><script>
 document.addEventListener("contextmenu", function(e){e.preventDefault();}, false);
 
-var getClass = function(c,n){return document.getElementsByClassName(c)[n]}
-var getId = function(id){return document.getElementById(id)}
-var cardsInfo = [];
-function edit_card(i){
-   getClass("card_title",i).contentEditable="true"
-   getClass("card_date",i).contentEditable="true"
-   getClass("card_txt",i).contentEditable="true"
-
-   getClass("card_edit",i).innerHTML = "DONE"
-
-   var id=getId("black_screen")
-   id.style.opacity="1";id.style.pointerEvents="auto"
-
-   var card = getClass("card",i);
-   card.style.zIndex="2"
-   card.style.left = "calc(50% - 150px)"
-   card.style.top = "calc(50% - 200px)"
-}
-function done_card_edit(i){
-   getClass("card_title",i).contentEditable="false"
-   getClass("card_date",i).contentEditable="false"
-   getClass("card_txt",i).contentEditable="false"
-
-   getClass("card_edit",i).innerHTML = "EDIT"
-
-   var id=getId("black_screen")
-   id.style.opacity="0";id.style.pointerEvents="none"
-
-   var card = getClass("card",i);
-   card.style.left=cardsInfo[i][0]+"px"
-   card.style.top=cardsInfo[i][1]+"px"
-   card.style.zIndex="0"
-}
 (function(){
 var body = document.body;
 var l = ' / ';
+var getClass = function(c,n){return document.getElementsByClassName(c)[n]}
+var getId = function(id){return document.getElementById(id)}
+var cardsInfo = [];
+
 // NOT based on real stories
 var cards = [{title: "I made a new friend!", made: {day: 16, month: 01, year: 2021}, content: "I met Bobby in eight grade and ever since then, we became best friends. He has a nice personality, a nice following and a nice set of skills. I would not replace him for anything."},
              {title: "I saw her...", made: {day: 16, month: 01, year: 2021}, content: "Oh my goodness, I saw my fifth grade crush after 9 years! She left in sixth grade, and that was the last time I saw her... Until now! And since I finally have all the courage to tell her... I did. And it went not well at all."},
@@ -60,23 +31,62 @@ var newCard = function(card, made){var nC = document.createElement("div");nC.cla
    cCaA("card_title",card.title);cCaA("card_date",made.day+l+made.month+l+made.year);cCaA("card_txt",card.content);cCaA("card_edit","EDIT")
    frag.appendChild(nC)
 }
-var loop = function(f){for(var i = 0;i < l;i++) {f()}}
-loop(function(){newCard(cards[i], cards[i].made)})
+for(var i = 0;i < l;i++) {newCard(cards[i], cards[i].made)}
 body.appendChild(frag)
 var bS=document.createElement("div");
 bS.id="black_screen"
 body.appendChild(bS)
 
+var edit_card = function(i){
+   var cI=cardsInfo[i];
+   cI[3].contentEditable="true"
+   cI[4].contentEditable="true"
+   cI[5].contentEditable="true"
+
+   cI[6].innerHTML = "DONE"
+
+   bS.style.opacity="1";bS.style.pointerEvents="auto"
+
+   var card = cI[4];
+   card.style.zIndex="2"
+   card.style.left = "calc(50% - 150px)"
+   card.style.top = "calc(50% - 200px)"
+}
+var done_card_edit = function(i){
+   var cI=cardsInfo[i];
+   cI[3].contentEditable="false"
+   cI[4].contentEditable="false"
+   cI[5].contentEditable="false"
+
+   cI[6].innerHTML = "EDIT"
+
+   bS.style.opacity="0";bS.style.pointerEvents="none"
+
+   var card = cI[2];
+   card.style.left=cI[0]+"px"
+   card.style.top=cI[1]+"px"
+   card.style.zIndex="0"
+}
+
 var l=cards.length;
-loop(function(){const self=i;let card=getClass("card_edit",self);
+for(var i = 0;i < l;i++) {const self=i;let card=getClass("card_edit",self);
 card.addEventListener("click",function(){
    card=getClass("card_edit",self);
    if(card.innerHTML==="EDIT"){edit_card(self)}
    else{done_card_edit(self)}
-})})
+})}
 
-loop(function(){const s=i;card=getClass("card",s);cardsInfo[s] = [card.offsetLeft, card.offsetTop, card.offsetWidth, card.offsetHeight]})
-loop(function(){var card = getClass("card",i);card.style.position="absolute";card.style.left=cardsInfo[i][0]+"px";card.style.top=cardsInfo[i][1]+"px"})
+for(var i = 0;i < l;i++) {card=getClass("card",i);cardsInfo[i] = 
+   [
+   card.offsetLeft, 
+   card.offsetTop, 
+   card,
+   getClass("card_title",i),
+   getClass("card_date",i),
+   getClass("card_txt",i),
+   getClass("card_edit",i)
+]}
+for(var i = 0;i < l;i++) {var card = cardsInfo[i][2];card.style.position="absolute";card.style.left=cardsInfo[i][0]+"px";card.style.top=cardsInfo[i][1]+"px"}
 
 }())
 </script></body>
