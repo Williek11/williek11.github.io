@@ -18,3 +18,19 @@ Styleless removes margin, padding, border and background, and unsets width and h
 You can put multiple of them; just separate them with & (fonts&clean&styleless)
 
 It will be buggy, so be aware of that. Known bugs include html tag styling and data properties being lost, script tags being weird, and possibly other unknown bugs.
+
+# Local Notes
+https://williek11.github.io/localNotes.html
+
+A little project I'm working on that you can add notes to that intends on using your device's storage and power to make it work, instead of hundreds and hundreds of servers. With this project, I am looking forward to improve myself upon:
+* General coding skills and best-practices
+* Knowledge upon IndexedDB, which will come in handy instead of using LocalStorage, which although has a more than adequate amount of storage for most purposes, will be so that your notes are pretty much limitless.
+* CSS knowledge
+* PWAs knowledge, which will help the app be loaded even when off-line
+
+And as for the project, the following will soon be added:
+
+* Create your own notes (duh)
+* CSS improvement (what is a good website without good visual aspects?)
+* Make it work off-line
+* Simple markup language
