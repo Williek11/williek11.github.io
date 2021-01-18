@@ -1,26 +1,81 @@
 <html>
 <head>
-</head>
-<body><script>
-var timer = {all: {},start: function (id, desc) {timer.all[id]={start: Date.now(), desc: desc}}};timer.start("Page Load Time", "The time it takes for the page to load in its entirety.")
-document.head.innerHTML=`<style>
+<style>
 
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
 ::selection { background: #0008; color: #eee }
-::-moz-selection { background: #0008; color:#eee }
 :focus{outline:0}
-body,html{padding:0;margin:0}body{margin:20px}
+body,html{background: #ccc;font-family:Rowdies;padding:0;margin:0}
+#top-footer{width:100%;height:70px;background: #efefef;border-bottom: 10px #0003 solid;display:flex;position:relative}
+#title{margin:21.5px;font-size:20px;color:#999}
+#title::selection,.button::selection {background: #0003;color: #fff;}
 #black_screen{z-index:1;background:#0006;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0}
-.card{text-shadow: 0 1px 0 #0003;margin-right: 20px;background:#efefef;width:300px;height:400px;font-family:Rowdies;box-shadow: 0 10px #0003;position:absolute}
+.card, #settings, #contact{text-shadow: 0 1px 0 #0003;background:#efefef;width:300px;height:400px;box-shadow: 0 10px #0003;position:absolute}
 .card_title{font-size:22.5px;text-align:center;color:#999;margin:10px 10px 0 10px}
 .card_date{font-size:12px;color:#aaa;border-bottom:2px #aaa solid;margin:0 10px 5px 10px;padding-bottom:5px}
 .card_txt{font-size:15px;color:#777;margin:0 10px}
-.card_edit{font-size:15px;position:absolute;background:#9f9f9f;height:30px;width:50px;right:10px;bottom:10px;line-height: 30px;text-align: center;color: #eee;box-shadow: 0 2px 0 #0006;cursor:pointer}
-.expanded{position:fixed;left:calc(50% - 250px) !important;top:calc(50% - 250px) !important;width:500px;height:500px;z-index:2!important}
+.button{font-size:15px;position:absolute;background:#9f9f9f;height:30px;width:50px;right:10px;bottom:10px;line-height: 30px;text-align: center;color: #eee;box-shadow: 0 2px 0 #0006;cursor:pointer}
+.expanded, #settings, #contact{position:fixed;left:calc(50% - 250px) !important;top:calc(50% - 250px) !important;width:500px;height:500px;z-index:2!important}
 .card_title_expanded{background: #ddd;padding: 2px}
 .card_txt_expanded{height: 360px;padding: 10px;background: #ddd;overflow: auto}
+a{color:#ddd;display:block}
+#settings, #contact{opacity:0;pointer-events:none}
+.header {height:40px;padding:0 10px;font-size:25px;line-height:40px;margin:15px;border-bottom:5px solid;color:#eee;font-size:16px}
+#bottomFooter p{padding-bottom:10px;margin:0;}
 
-</style>`
+</style>
+</head>
+<body>
+<div id="top-footer">
+    <svg style="padding: 5px 10px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="0 0 50 50" width="60" height="60">
+      <defs>
+        <path d="M50 25C50 38.8 38.8 50 25 50C11.2 50 0 38.8 0 25C0 11.2 11.2 0 25 0C38.8 0 50 11.2 50 25Z" id="d2aJyobu2Y"/><path d="M21.14 7.36L41.66 18.03L28.86 42.64L8.34 31.97L21.14 7.36Z" id="b12cMdJ2Db"/>
+        <path d="M21.15 12.78L37.22 21.14L36.86 21.83L20.79 13.47L21.15 12.78Z" id="bkvgpkRlU"/>
+        <path d="M18.45 17.98L34.51 26.34L34.15 27.03L18.08 18.67L18.45 17.98Z" id="bMZKAVGkB"/>
+        <path d="M15.74 23.18L31.81 31.54L31.45 32.23L15.38 23.87L15.74 23.18Z" id="c2HYdPk4O5"/>
+        <path d="M13.04 28.37L29.1 36.73L28.74 37.43L12.68 29.07L13.04 28.37Z" id="a1rReQ8HF"/>
+      </defs>
+      <g>
+        <g>
+          <g>
+            <use xlink:href="#d2aJyobu2Y" opacity="1" fill="#0003" fill-opacity="1"/>
+          </g>
+          <g>
+            <use xlink:href="#b12cMdJ2Db" opacity="1" fill="#efefef" fill-opacity="1"/>
+          </g>
+          <g>
+            <use xlink:href="#bkvgpkRlU" opacity="1" fill="#7d7d7d" fill-opacity="1"/>
+          </g>
+          <g>
+            <use xlink:href="#bMZKAVGkB" opacity="1" fill="#7d7d7d" fill-opacity="1"/>
+          </g>
+          <g>
+            <use xlink:href="#c2HYdPk4O5" opacity="1" fill="#7d7d7d" fill-opacity="1"/>
+          </g>
+          <g>
+            <use xlink:href="#a1rReQ8HF" opacity="1" fill="#7d7d7d" fill-opacity="1"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <span id="title">Local Notes</span>
+    <div class="button" id="settings_button" style="width: 100px;bottom: 22.5px;right:125px">CONTACT</div>
+    <div class="button" id="contact_button" style="width: 100px;bottom: 22.5px;">SETTINGS</div>
+  </div>
+<div id="settings">
+  <p style="padding: 0 20px 20px 20px;color:#999">I don't have a super fancy, omega nice contact website for you to contect me, so just contact me via Discord, or any of the following, really.</p>
+  <div class="header" style="background:#9174e3;border-bottom-color:#6d58a8">DISCORD - Williek#5783</div>
+  <div class="header" style="background:#eb8a36;border-bottom-color:#bd6e2a">REDDIT - WilliekTheEucalyptus</div>
+  <div class="header" style="background:#2f3669;border-bottom-color:#181b36">FANDOM - Williek11, AKA Eucalyptus</div>
+  <div class="header" style="background:#525252;border-bottom-color:#3b3b3b">GITHUB - Williek11</div>
+  <div id="settings_back" class="button">BACK</div>
+</div>
+<div id="contact">
+  <div id="contact_back" class="button">BACK</div>
+  
+</div>
+<script>
+var timer = {all: {},start: function (id, desc) {timer.all[id]={start: Date.now(), desc: desc}}};timer.start("Page Load Time", "The time it takes for the page to load in its entirety.")
 document.addEventListener("contextmenu", function(e){e.preventDefault();}, false);
 
 //////////////
@@ -38,7 +93,6 @@ timer.stop = function (id) {
   logs.perf(id, obj.start, Date.now(), obj.start - Date.now(), obj.desc)
 }
 var body = document.body;
-body.innerHTML=""
 var getClass = function(c,n){return document.getElementsByClassName(c)[n]}
 var getId = function(id){return document.getElementById(id)}
 var cardsInfo = [];
@@ -97,12 +151,21 @@ logs.func('Executing multiple "newCard" functions, used in order to create new c
 var newCard = function(card, made){
   var nC = document.createElement("div");nC.className="card"
   var cCaA=function(c,txt){var t=document.createElement("div");t.className=c;t.innerText=txt;nC.appendChild(t)}
-  cCaA("card_title",card.title);cCaA("card_date",made.day+' / '+made.month+' / '+made.year);cCaA("card_txt",card.content);cCaA("card_edit","EDIT")
+  cCaA("card_title",card.title);cCaA("card_date",made.day+' / '+made.month+' / '+made.year);cCaA("card_txt",card.content);cCaA("card_edit button","EDIT")
   frag.appendChild(nC)
 }
 var l=cards.length;
   
 for(var i = 0;i < l;i++) {newCard(cards[i], cards[i].made)}
+var bottomFooter = document.createElement("div");
+bottomFooter.style="color:#ddd;text-align: center;background:#333;position:absolute;width:100%"
+bottomFooter.id="bottomFooter"
+bottomFooter.innerHTML=`<div style="padding:25px 0 35px 0;width:100%;font-size:35px">Projects</div>
+<p><a href="https://williek11.github.io">Home Page</a></p>
+<p><a href="https://williek11.github.io/htmlpreview.html">HTML Previewer</a></p>
+<p style="margin-bottom:75px"><a href="https://williek11.github.io/localNotes.html">Local Notes</a></p>
+`
+frag.appendChild(bottomFooter)
 body.appendChild(frag)
 var bS=document.createElement("div");
 timer.stop("Document Fragment Benchmark")
@@ -116,14 +179,28 @@ body.appendChild(bS)
 logs.debug(["Black Screen, used in order to blacken the cards and other DOM objects as requested."])
 
 var bSS=bS.style;
+
+var popUp = function (name) {
+  getId(name).style="opacity:1;pointer-events:auto";
+  bSS.opacity="1";bSS.pointerEvents="auto";
+}
+
+getId("settings_button").addEventListener("click",function(){popUp("settings")})
+getId("contact_button").addEventListener("click",function(){popUp("contact")})
+
+var close_popUp = function (name) {
+  getId(name).style="opacity:0;pointer-events:none";
+  bSS.opacity="0";bSS.pointerEvents="none";
+}
+
+getId("settings_back").addEventListener("click",function(){close_popUp("settings")})
+getId("contact_back").addEventListener("click",function(){close_popUp("contact")})
   
 ///////////////
 // Edit Card //
 ///////////////
   
 var edit_card = function(i){
-  timer.start("Edit Card","Benchmarking it in order to make sure it is nicely optimized.")
-  logs.func('Function "edit_card", which lets you edit a certain card as you desire.')
   var cI=cardsInfo[i];
   cI[3].contentEditable="true";cI[5].contentEditable="true";
   cI[3].className="card_title card_title_expanded";cI[5].className="card_txt card_txt_expanded"
@@ -132,15 +209,10 @@ var edit_card = function(i){
 
   bSS.opacity="1";bSS.pointerEvents="auto";
 
-  var card = cI[2];
-  card.zIndex="2"
   getClass('card',i).className="card expanded"
-  timer.stop("Edit Card")
 }
 
 var done_card_edit = function(i){
-  timer.start("Done Edit Card","Benchmarking it in order to make sure it is nicely optimized.")
-  logs.func('Function "done_edit_card", triggered once you are done editing a card.')
   var cI=cardsInfo[i];
   cI[3].contentEditable="false";cI[5].contentEditable="false";
   cI[3].className="card_title";cI[5].className="card_txt"
@@ -150,8 +222,6 @@ var done_card_edit = function(i){
   bSS.opacity="0";bSS.pointerEvents="none";
 
   getClass('card',i).className="card"
-  cI[2].zIndex="0"
-  timer.stop("Done Edit Card")
 }
 
 logs.debug(['Triggering loop that add an event listener into DOM objects with "card_edit" class.'])
@@ -185,62 +255,30 @@ for(var i = 0;i < l;i++) {card=getClass("card",i);
                           cardsInfo[i] = 
    [
    20 + calcColumn(i+1) * 320, 
-   20 + (calcLine(i+1) - 1) * 450, 
+   110 + (calcLine(i+1) - 1) * 450, 
    card.style,
    getClass("card_title",i),
    getClass("card_date",i),
    getClass("card_txt",i),
    getClass("card_edit",i)
 ]}
-var appnd=document.createElement("div");appnd.style.height=`${20 + (calcLine(cards.length) - 1) * 450 + 400 + 40}px`;appnd.style.width="0.1px";body.appendChild(appnd);
+bottomFooter.style.top=`${20 + (calcLine(cards.length) - 1) * 450 + 400 + 40 + 100}px`;
 for(var i = 0;i < l;i++) {var card=getClass("card",i);
                           card.setAttribute("data-id",i);
                           card.setAttribute("data-line",calcColumn(i+1));
                           card.setAttribute("data-column",calcLine(i+1) - 1);
                           card.style.left=cardsInfo[i][0]+"px";
                           card.style.top=cardsInfo[i][1]+"px"}
-
-var Arr;
-
-switch (Math.ceil(Math.random() * 8)) {
-  case 1:
-  Arr=["Hey, what's up man?","Oh wait, you can't talk back to me.","... So does that mean I can mock you?"]
-  break
-
-  case 2:
-  Arr=["Who are you?","...","TALK WITH ME!","...","IS THAT WHAT THIS IS? MOCKING ME?","...","FHSIODJFOIJSOFJW"]
-  break
-
-  case 3:
-  Arr=["What do you think you're doing here???","Yeah, that's what I thought."]
-  break
-
-  case 4:
-  Arr=["Oh, my... You... You... ... SHOULD GET OUT!","NOW!!!","...","I said, NOW!!!","...",". . .","undefined character has left the game"]
-  break
-
-  case 5:
-  Arr=["Oh, my...","You... You...","...Look like a dog!","Puppy!"]
-  break
-
-  case 6:
-  Arr=["Pee pee poo poo...","You are a doo doo!"]
-  break
-
-  case 7:
-  Arr=["Hey, you are a nice guy.","...","Welp, you don't care, do you?","That's mean."]
-  break
-
-  case 8:
-  Arr=["gasp","YOU.","HOW DARE YOU TALK ABOUT...","THE BAD?!?"]
-  break
-
-  default:
-  Arr=[". . ."]
-  break
-}
+var Arr=[["Hey, what's up man?","Oh wait, you can't talk back to me.","... So does that mean I can mock you?"],
+         ["Who are you?","...","TALK WITH ME!","...","IS THAT WHAT THIS IS? MOCKING ME?","...","FHSIODJFOIJSOFJW"],
+         ["What do you think you're doing here???","Yeah, that's what I thought."],
+         ["Oh, my... You... You... ... SHOULD GET OUT!","NOW!!!","...","I said, NOW!!!","...",". . .","undefined character has left the game"],
+         ["Oh, my...","You... You...","...Look like a dog!","Puppy!"],
+         ["Pee pee poo poo...","You are a doo doo!"],
+         ["Hey, you are a nice guy.","...","Welp, you don't care, do you?","That's mean."],
+         ["gasp","YOU.","HOW DARE YOU TALK ABOUT...","THE BAD?!?"],]
 timer.stop("Page Load Time")
-logs.comment(Arr)
+logs.comment(Arr[Math.floor(Math.random() * 8)])
 }())
 </script></body>
 </html>
