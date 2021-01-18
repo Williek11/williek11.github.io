@@ -3,7 +3,9 @@
 </head>
 <body><script>
 var timer = {all: {},start: function (id, desc) {timer.all[id]={start: Date.now(), desc: desc}}};timer.start("Page Load Time", "The time it takes for the page to load in its entirety.")
-document.head.innerHTML=`<style>@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
+document.head.innerHTML=`<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
 ::selection { background: #0008; color: #eee }
 ::-moz-selection { background: #0008; color:#eee }
 :focus{outline:0}
@@ -17,6 +19,7 @@ body,html{padding:0;margin:0}body{margin:20px}
 .expanded{position:fixed;left:calc(50% - 250px) !important;top:calc(50% - 250px) !important;width:500px;height:500px;z-index:2!important}
 .card_title_expanded{background: #ddd;padding: 2px}
 .card_txt_expanded{height: 360px;padding: 10px;background: #ddd;overflow: auto}
+
 </style>`
 document.addEventListener("contextmenu", function(e){e.preventDefault();}, false);
 
@@ -25,11 +28,25 @@ document.addEventListener("contextmenu", function(e){e.preventDefault();}, false
 //////////////
   
 (function(){
-  
+
+////////////////
+// Timer Stop //
+////////////////
+
+timer.stop = function (id) {
+  var obj = timer.all[id];
+  logs.perf(id, obj.start, Date.now(), obj.start - Date.now(), obj.desc)
+}
+var body = document.body;
+body.innerHTML=""
+var getClass = function(c,n){return document.getElementsByClassName(c)[n]}
+var getId = function(id){return document.getElementById(id)}
+var cardsInfo = [];
+
 //////////
 // Logs //
 //////////
-  
+
 var logs = {
   debug: function ( arr_of_contents ) { 
     console.group("%cDebug","background:#f53636;padding:5px 10px;color:#eee;border-bottom:5px #af2b2b solid")
@@ -52,22 +69,13 @@ var logs = {
     console.log("%c●%cDelay: "+delay+"ms","color:#3f55e9","color:#666;padding-left:10px")
     console.log("%c●%cDescription: "+desc,"color:#3f55e9","color:#666;padding-left:10px")
     console.groupEnd();
+  },
+  comment: function ( arr ) {
+    for(var i=0;i<arr.length;i++){
+      console.log("%c"+arr[i],"background:#565464;padding:5px 10px;color:#eee;border-bottom:5px #3a3943 solid")
+    }
   }
 }
-
-////////////////
-// Timer Stop //
-////////////////
-
-timer.stop = function (id) {
-  var obj = timer.all[id];
-  logs.perf(id, obj.start, Date.now(), obj.start - Date.now(), obj.desc)
-}
-var body = document.body;
-body.innerHTML=""
-var getClass = function(c,n){return document.getElementsByClassName(c)[n]}
-var getId = function(id){return document.getElementById(id)}
-var cardsInfo = [];
   
 ///////////
 // Cards //
@@ -129,6 +137,7 @@ var edit_card = function(i){
   getClass('card',i).className="card expanded"
   timer.stop("Edit Card")
 }
+
 var done_card_edit = function(i){
   timer.start("Done Edit Card","Benchmarking it in order to make sure it is nicely optimized.")
   logs.func('Function "done_edit_card", triggered once you are done editing a card.')
@@ -144,6 +153,7 @@ var done_card_edit = function(i){
   cI[2].zIndex="0"
   timer.stop("Done Edit Card")
 }
+
 logs.debug(['Triggering loop that add an event listener into DOM objects with "card_edit" class.'])
 for(var i = 0;i < l;i++) {const self=i;getClass("card_edit",self).addEventListener("click",function(){
    if(getClass("card_edit",self).innerHTML==="EDIT"){edit_card(self)}
@@ -151,8 +161,9 @@ for(var i = 0;i < l;i++) {const self=i;getClass("card_edit",self).addEventListen
 })}
 
 function notesPerLine () {
-  return Math.floor(window.innerWidth / 320)
+  return Math.floor(window.innerWidth / 320);
 }
+  
 logs.debug(['Function "Notes Per Line" gave the following result for a call: '+notesPerLine()])
 function calcLine (i) {
   var result; if(20 + i * 320 > window.innerWidth){
@@ -181,15 +192,55 @@ for(var i = 0;i < l;i++) {card=getClass("card",i);
    getClass("card_txt",i),
    getClass("card_edit",i)
 ]}
-var appnd=document.createElement("div");appnd.style.height=`${20 + (calcLine(cards.length) - 1) * 450 + 400 + 40}px`;appnd.style.width="0.1px";body.appendChild(appnd)
+var appnd=document.createElement("div");appnd.style.height=`${20 + (calcLine(cards.length) - 1) * 450 + 400 + 40}px`;appnd.style.width="0.1px";body.appendChild(appnd);
 for(var i = 0;i < l;i++) {var card=getClass("card",i);
-                          card.setAttribute("data-id",i)
-                          card.setAttribute("data-line",calcColumn(i+1))
-                          card.setAttribute("data-column",calcLine(i+1) - 1)
+                          card.setAttribute("data-id",i);
+                          card.setAttribute("data-line",calcColumn(i+1));
+                          card.setAttribute("data-column",calcLine(i+1) - 1);
                           card.style.left=cardsInfo[i][0]+"px";
                           card.style.top=cardsInfo[i][1]+"px"}
+
+var Arr;
+
+switch (Math.ceil(Math.random() * 8)) {
+  case 1:
+  Arr=["Hey, what's up man?","Oh wait, you can't talk back to me.","... So does that mean I can mock you?"]
+  break
+
+  case 2:
+  Arr=["Who are you?","...","TALK WITH ME!","...","IS THAT WHAT THIS IS? MOCKING ME?","...","FHSIODJFOIJSOFJW"]
+  break
+
+  case 3:
+  Arr=["What do you think you're doing here???","Yeah, that's what I thought."]
+  break
+
+  case 4:
+  Arr=["Oh, my... You... You... ... SHOULD GET OUT!","NOW!!!","...","I said, NOW!!!","...",". . .","undefined character has left the game"]
+  break
+
+  case 5:
+  Arr=["Oh, my...","You... You...","...Look like a dog!","Puppy!"]
+  break
+
+  case 6:
+  Arr=["Pee pee poo poo...","You are a doo doo!"]
+  break
+
+  case 7:
+  Arr=["Hey, you are a nice guy.","...","Welp, you don't care, do you?","That's mean."]
+  break
+
+  case 8:
+  Arr=["gasp","YOU.","HOW DARE YOU TALK ABOUT...","THE BAD?!?"]
+  break
+
+  default:
+  Arr=[". . ."]
+  break
+}
+timer.stop("Page Load Time")
+logs.comment(Arr)
 }())
-  
-  timer.stop("Page Load Time")
 </script></body>
 </html>
