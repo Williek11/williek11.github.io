@@ -6,7 +6,8 @@
 ::selection { background: #0008; color: #eee }
 :focus{outline:0}
 body,html{background: #ccc;font-family:Rowdies;padding:0;margin:0}
-#top-footer{width:100%;height:70px;background: #efefef;border-bottom: 10px #0003 solid;display:flex;position:relative}
+#top-footer{width:100%;height:70px;background: #efefef;box-shadow: 0 10px #0003;display:flex;position:relative;z-index:1}
+#bottomFooter{color:#ddd;text-align:center;background:#333;position:absolute;width:100%}
 #title{margin:21.5px;font-size:20px;color:#999}
 #title::selection,.button::selection {background: #0003;color: #fff;}
 #black_screen{z-index:1;background:#0006;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0}
@@ -22,6 +23,14 @@ a{color:#ddd;display:block}
 #settings, #contact{opacity:0;pointer-events:none}
 .header {height:40px;padding:0 10px;font-size:25px;line-height:40px;margin:15px;border-bottom:5px solid;color:#eee;font-size:16px}
 #bottomFooter p{padding-bottom:10px;margin:0;}
+
+.switch {background: #999;width: 60px;height: 25px;margin: 20px;cursor:pointer}
+.ball {background: #bbb;position: relative;bottom: 5px;width: 35px;height: 35px;right: 5px;border-radius: 5px;}
+.switch.active {background:#64a75c;}
+.ball.active {background:#90f784;left: 30px;}
+
+</style>
+<style id="dark-mode">
 
 </style>
 </head>
@@ -59,20 +68,23 @@ a{color:#ddd;display:block}
       </g>
     </svg>
     <span id="title">Local Notes</span>
-    <div class="button" id="settings_button" style="width: 100px;bottom: 22.5px;right:125px">CONTACT</div>
-    <div class="button" id="contact_button" style="width: 100px;bottom: 22.5px;">SETTINGS</div>
+    <div class="button" id="contact_button" style="width: 100px;bottom: 22.5px;right:125px">CONTACT</div>
+    <div class="button" id="settings_button" style="width: 100px;bottom: 22.5px;">SETTINGS</div>
   </div>
 <div id="settings">
+  <div style="display:flex;color:#888"><div class="switch"><div class="ball"></div></div><div style="height: 65px;display: table;"><div style="display: table-cell;vertical-align: middle;">Enable a dark mode-ish style.</div></div></div>
+  <div style="display:flex;color:#888"><div class="switch"><div class="ball"></div></div><div style="height: 65px;display: table;"><div style="display: table-cell;vertical-align: middle;">Keep the top footer fixed on top.</div></div></div>
+  <div style="display:flex;color:#888"><div><div class="switch"><div class="ball"></div></div></div><div style="height: 65px;display: table;"><div style="display: table-cell;vertical-align: middle;">Make the notes stay in your window as you resize your browser (laggier).</div></div></div>
+  <div id="settings_back" class="button">BACK</div>
+</div>
+<div id="contact">
   <p style="padding: 0 20px 20px 20px;color:#999">I don't have a super fancy, omega nice contact website for you to contect me, so just contact me via Discord, or any of the following, really.</p>
   <div class="header" style="background:#9174e3;border-bottom-color:#6d58a8">DISCORD - Williek#5783</div>
   <div class="header" style="background:#eb8a36;border-bottom-color:#bd6e2a">REDDIT - WilliekTheEucalyptus</div>
   <div class="header" style="background:#2f3669;border-bottom-color:#181b36">FANDOM - Williek11, AKA Eucalyptus</div>
   <div class="header" style="background:#525252;border-bottom-color:#3b3b3b">GITHUB - Williek11</div>
-  <div id="settings_back" class="button">BACK</div>
-</div>
-<div id="contact">
+
   <div id="contact_back" class="button">BACK</div>
-  
 </div>
 <script>
 var timer = {all: {},start: function (id, desc) {timer.all[id]={start: Date.now(), desc: desc}}};timer.start("Page Load Time", "The time it takes for the page to load in its entirety.")
@@ -130,6 +142,88 @@ var logs = {
     }
   }
 }
+
+//////////////
+// Settings //
+//////////////
+
+var onresize = function(){};
+
+var settings = {
+  "dark_mode" : [, 0, function(){getId("dark-mode").innerHTML = `
+
+::selection { background: #eee; color: #222 }
+body,html{background: #131315}
+#top-footer{background: #414246;box-shadow: 0 10px #232325}
+#bottomFooter{color:#ddd;text-align:center;background:#161719;position:absolute;width:100%}
+#title{color:#ddd}
+#title::selection,.button::selection {background: #fff6;color: #000;}
+.card, #settings, #contact{text-shadow: 0 1px 0 #fff2;background:#414246;box-shadow: 0 10px #232325}
+.card_title{color:#ccc}
+.card_date{color:#aaa;border-bottom:2px #ccc solid}
+.card_txt{color:#ddd;}
+.button{background:#ccc;color: #333;box-shadow: 0 2px 0 #fff4}
+.card_title_expanded{background: #0002}
+.card_txt_expanded{background: #0002}
+a{color:#ddd;display:block}
+.header {border-bottom:5px solid;color:#eee;}
+
+.switch {background: #999;width: 60px;height: 25px;margin: 20px;cursor:pointer}
+.ball {background: #bbb;position: relative;bottom: 5px;width: 35px;height: 35px;right: 5px;border-radius: 5px;}
+.switch.active {background:#64a75c;}
+.ball.active {background:#90f784;left: 30px;}
+
+`}, function(){getId("dark-mode").innerHTML = ``}],
+  "top_footer_fixed" : [, 1, function(){getId("top-footer").style.position="fixed"}, function(){getId("top-footer").style.position="absolute"}],
+  "dynamic_card_changing" : [, 2, function(){window.addEventListener("resize",onresize)}, function(){window.removeEventListener("resize",onresize)}]
+}
+
+var settingsStr = localStorage.settings;
+if (!settingsStr || settingsStr.length!=3) {
+  settingsStr = "fff";
+  localStorage.settings = settingsStr;
+}
+
+function updateSettings () {
+  settingsStr = settings.dark_mode[0] + settings.top_footer_fixed[0] + settings.dynamic_card_changing[0];
+  localStorage.settings = settingsStr;
+}
+
+var count=0;
+
+for (var key in settings) {
+  const s = key;
+  const ball = getClass("ball",settings[s][1]);
+  const swit = getClass("switch",settings[s][1]);
+
+  settings[s][0] = localStorage.settings[count]
+
+  count++
+
+  if(settings[key][0]==="t"){
+    ball.className="ball active"
+    swit.className="switch active"
+    settings[s][2]()
+  }
+
+    getClass("switch",settings[s][1]).addEventListener("click",function () {
+      if(settings[s][0]==="f"){
+        ball.className="ball active"
+        swit.className="switch active"
+        settings[s][0]="t"
+        settings[s][2]()
+        updateSettings()
+      }
+      else {
+        ball.className="ball"
+        swit.className="switch"
+        settings[s][0]="f"
+        settings[s][3]()
+        updateSettings()
+      }
+    }
+  )
+}
   
 ///////////
 // Cards //
@@ -158,7 +252,6 @@ var l=cards.length;
   
 for(var i = 0;i < l;i++) {newCard(cards[i], cards[i].made)}
 var bottomFooter = document.createElement("div");
-bottomFooter.style="color:#ddd;text-align: center;background:#333;position:absolute;width:100%"
 bottomFooter.id="bottomFooter"
 bottomFooter.innerHTML=`<div style="padding:25px 0 35px 0;width:100%;font-size:35px">Projects</div>
 <p><a href="https://williek11.github.io">Home Page</a></p>
@@ -251,17 +344,43 @@ function calcColumn (i) {
 }
   
 logs.debug(['Triggering loop that stores card data into "cardsInfo".'])
+
 for(var i = 0;i < l;i++) {card=getClass("card",i);
                           cardsInfo[i] = 
-   [
-   20 + calcColumn(i+1) * 320, 
-   110 + (calcLine(i+1) - 1) * 450, 
-   card.style,
-   getClass("card_title",i),
-   getClass("card_date",i),
-   getClass("card_txt",i),
-   getClass("card_edit",i)
-]}
+  [
+    20 + calcColumn(i+1) * (300 + 20), 
+    110 + (calcLine(i+1) - 1) * (400 + 50), 
+    card.style,
+    getClass("card_title",i),
+    getClass("card_date",i),
+    getClass("card_txt",i),
+    getClass("card_edit",i)
+  ]
+}
+
+bottomFooter.style.top=`${20 + (calcLine(cards.length) - 1) * 450 + 400 + 40 + 100}px`;
+for(var i = 0;i < l;i++) {
+  var card=getClass("card",i);
+  card.setAttribute("data-id",i);
+  card.setAttribute("data-line",calcColumn(i+1));
+  card.setAttribute("data-column",calcLine(i+1) - 1);
+  card.style.left=cardsInfo[i][0]+"px";
+  card.style.top=cardsInfo[i][1]+"px"
+}
+
+onresize = function () {
+for(var i = 0;i < l;i++) {
+  card=getClass("card",i);
+  cardsInfo[i] = [
+    20 + calcColumn(i+1) * (300 + 20), 
+    110 + (calcLine(i+1) - 1) * (400 + 50), 
+    card.style,
+    getClass("card_title",i),
+    getClass("card_date",i),
+    getClass("card_txt",i),
+    getClass("card_edit",i)]
+  }
+
 bottomFooter.style.top=`${20 + (calcLine(cards.length) - 1) * 450 + 400 + 40 + 100}px`;
 for(var i = 0;i < l;i++) {var card=getClass("card",i);
                           card.setAttribute("data-id",i);
@@ -269,6 +388,8 @@ for(var i = 0;i < l;i++) {var card=getClass("card",i);
                           card.setAttribute("data-column",calcLine(i+1) - 1);
                           card.style.left=cardsInfo[i][0]+"px";
                           card.style.top=cardsInfo[i][1]+"px"}
+}
+
 var Arr=[["Hey, what's up man?","Oh wait, you can't talk back to me.","... So does that mean I can mock you?"],
          ["Who are you?","...","TALK WITH ME!","...","IS THAT WHAT THIS IS? MOCKING ME?","...","FHSIODJFOIJSOFJW"],
          ["What do you think you're doing here???","Yeah, that's what I thought."],
