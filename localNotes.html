@@ -339,7 +339,7 @@ for(var i = 0;i < l;i++) {
   card=getClass("card",i);
   cardsInfo[i] = [
     20 + calcColumn(i+1) * (300 + 20), 
-    110 + (calcLine(i+1) - 1) * (400 + 50), 
+    110 + calcLine(i) * (400 + 50), 
     card.style,
     getClass("card_title",i),
     getClass("card_date",i),
@@ -347,7 +347,7 @@ for(var i = 0;i < l;i++) {
     getClass("card_edit",i)]
   }
 
-bottomFooter.style=`top:${20 + (calcLine(cards.length)) * 450 + 400 + 40 + 100}px;display:block`;
+bottomFooter.style=`top:${20 + (calcLine(cards.length) - 1) * 450 + 400 + 40 + 100}px;display:block`;
 for(var i = 0;i < l;i++) {var card=getClass("card",i);
                           card.setAttribute("data-id",i);
                           card.setAttribute("data-line",calcColumn(i+1));
