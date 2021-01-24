@@ -329,14 +329,7 @@ function notesPerLine () {
   
 logs.debug(['Function "Notes Per Line" gave the following result for a call: '+notesPerLine()])
 function calcLine (i) {
-  var result; if(20 + i * 320 > window.innerWidth){
-    logs.debug(['Function "Calc Line" gave the following results for a call with the param of '+i+':',
-                '20 + i * 320: '+(20 + i * 320),
-                '[Last result] / window.innerWidth: '+((20 + i * 320) / window.innerWidth),
-                'Math.ceil((20 + i * 320) / window.innerWidth): '+(Math.ceil((20 + i * 320) / window.innerWidth))
-               ])
-    result = Math.ceil((20 + i * 320) / window.innerWidth)
-  }else{result = 1;logs.debug(['Function "Calc Line" gave the following result for a call with the param of '+i+': '+i])}return result
+  return Math.floor(i / notesPerLine()) - 1
 }
 function calcColumn (i) {
   while(i > notesPerLine()){i = i - notesPerLine()}
@@ -349,7 +342,7 @@ for(var i = 0;i < l;i++) {card=getClass("card",i);
                           cardsInfo[i] = 
   [
     20 + calcColumn(i+1) * (300 + 20), 
-    110 + (calcLine(i+1) - 1) * (400 + 50), 
+    110 + (calcLine(i+1)) * (400 + 50), 
     card.style,
     getClass("card_title",i),
     getClass("card_date",i),
