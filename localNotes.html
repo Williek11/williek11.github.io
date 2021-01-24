@@ -162,7 +162,7 @@ var settings = {
 ::selection { background: #eee; color: #222 }
 body,html{background: #131315}
 #top-footer{background: #414246;box-shadow: 0 10px #232325}
-#bottomFooter{color:#ddd;text-align:center;background:#161719;position:absolute;width:100%}
+#bottom-footer{color:#ddd;text-align:center;background:#161719;position:absolute;width:100%}
 #title{color:#ddd}
 #title::selection,.button::selection {background: #fff6;color: #000;}
 .card, #settings, #contact{text-shadow: 0 1px 0 #fff2;background:#414246;box-shadow: 0 10px #232325}
@@ -334,29 +334,6 @@ function calcColumn (i) {
   
 logs.debug(['Triggering loop that stores card data into "cardsInfo".'])
 
-for(var i = 0;i < l;i++) {card=getClass("card",i);
-                          cardsInfo[i] = 
-  [
-    20 + calcColumn(i+1) * (300 + 20), 
-    110 + (calcLine(i)) * (400 + 50), 
-    card.style,
-    getClass("card_title",i),
-    getClass("card_date",i),
-    getClass("card_txt",i),
-    getClass("card_edit",i)
-  ]
-}
-
-bottomFooter.style=`top:${20 + (calcLine(cards.length)) * 450 + 400 + 40 + 100}px;display:block`;
-for(var i = 0;i < l;i++) {
-  var card=getClass("card",i);
-  card.setAttribute("data-id",i);
-  card.setAttribute("data-line",calcColumn(i+1));
-  card.setAttribute("data-column",calcLine(i+1) - 1);
-  card.style.left=cardsInfo[i][0]+"px";
-  card.style.top=cardsInfo[i][1]+"px"
-}
-
 onresize = function () {
 for(var i = 0;i < l;i++) {
   card=getClass("card",i);
@@ -370,7 +347,7 @@ for(var i = 0;i < l;i++) {
     getClass("card_edit",i)]
   }
 
-bottomFooter.style=`top:${20 + (calcLine(cards.length)) * 450 + 400 + 40 + 100}px;display:block`;
+bottomFooter.style=`top:${20 + (calcLine(cards.length - 1)) * 450 + 400 + 40 + 100}px;display:block`;
 for(var i = 0;i < l;i++) {var card=getClass("card",i);
                           card.setAttribute("data-id",i);
                           card.setAttribute("data-line",calcColumn(i+1));
@@ -378,6 +355,7 @@ for(var i = 0;i < l;i++) {var card=getClass("card",i);
                           card.style.left=cardsInfo[i][0]+"px";
                           card.style.top=cardsInfo[i][1]+"px"}
 }
+onresize()
 
 var Arr=[["Hey, what's up man?","Oh wait, you can't talk back to me.","... So does that mean I can mock you?"],
          ["Who are you?","...","TALK WITH ME!","...","IS THAT WHAT THIS IS? MOCKING ME?","...","FHSIODJFOIJSOFJW"],
