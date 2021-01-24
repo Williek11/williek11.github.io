@@ -7,7 +7,7 @@
 :focus{outline:0}
 body,html{background: #ccc;font-family:Rowdies;padding:0;margin:0}
 #top-footer{width:100%;height:70px;background: #efefef;box-shadow: 0 10px #0003;display:flex;position:relative;z-index:1}
-#bottomFooter{color:#ddd;text-align:center;background:#333;position:absolute;width:100%}
+#bottom-footer{color:#ddd;text-align:center;background:#333;position:absolute;width:100%}
 #title{margin:21.5px;font-size:20px;color:#999}
 #title::selection,.button::selection {background: #0003;color: #fff;}
 #black_screen{z-index:1;background:#0006;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0}
@@ -86,6 +86,13 @@ a{color:#ddd;display:block}
 
   <div id="contact_back" class="button">BACK</div>
 </div>
+<div id="bottom-footer">
+  <div style="padding:25px 0 35px 0;width:100%;font-size:35px">Projects</div>
+  <p><a href="https://williek11.github.io">Home Page</a></p>
+  <p><a href="https://williek11.github.io/htmlpreview.html">HTML Previewer</a></p>
+  <p style="margin-bottom:75px"><a href="https://williek11.github.io/localNotes.html">Local Notes</a></p>
+</div>
+<div id="black_screen"></div>
 <script>
 var timer = {all: {},start: function (id, desc) {timer.all[id]={start: Date.now(), desc: desc}}};timer.start("Page Load Time", "The time it takes for the page to load in its entirety.")
 document.addEventListener("contextmenu", function(e){e.preventDefault();}, false);
@@ -251,26 +258,15 @@ var newCard = function(card, made){
 var l=cards.length;
   
 for(var i = 0;i < l;i++) {newCard(cards[i], cards[i].made)}
-var bottomFooter = document.createElement("div");
-bottomFooter.id="bottomFooter"
-bottomFooter.innerHTML=`<div style="padding:25px 0 35px 0;width:100%;font-size:35px">Projects</div>
-<p><a href="https://williek11.github.io">Home Page</a></p>
-<p><a href="https://williek11.github.io/htmlpreview.html">HTML Previewer</a></p>
-<p style="margin-bottom:75px"><a href="https://williek11.github.io/localNotes.html">Local Notes</a></p>
-`
-frag.appendChild(bottomFooter)
+var bottomFooter = getId("bottom-footer")
 body.appendChild(frag)
-var bS=document.createElement("div");
 timer.stop("Document Fragment Benchmark")
   
 //////////////////
 // Black Screen //
 //////////////////
-  
-bS.id="black_screen"
-body.appendChild(bS)
-logs.debug(["Black Screen, used in order to blacken the cards and other DOM objects as requested."])
-
+ 
+var bS = getId("black_screen")
 var bSS=bS.style;
 
 var popUp = function (name) {
