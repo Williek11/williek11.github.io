@@ -329,7 +329,7 @@ function notesPerLine () {
   
 logs.debug(['Function "Notes Per Line" gave the following result for a call: '+notesPerLine()])
 function calcLine (i) {
-  return Math.floor(i / notesPerLine()) - 1
+  return Math.floor(i / notesPerLine())
 }
 function calcColumn (i) {
   while(i > notesPerLine()){i = i - notesPerLine()}
