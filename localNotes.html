@@ -1,86 +1,41 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content-type="utf-8">
+    <meta charset="utf-8" content-type="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Local Notes is a service that lets you quickly make and save notes.">
     <title>Williek11 - Local Notes</title>
-    <!-- <link rel="stylesheet" href="index.css" /> -->
-    <style>@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');:focus{outline:0}body,html{background:#ccc;font-family:Rowdies;padding:0;margin:0}#top-footer{width:100%;height:70px;background:#efefef;box-shadow:0 10px #0003;display:flex;position:relative;z-index:1}#bottom-footer{color:#ddd;text-align:center;background:#333;position:absolute;width:100%;display:none}#title{margin:21.5px;font-size:20px;color:#999}#title::selection,.button::selection{background:#0003;color:#fff}#black_screen{z-index:1;background:#0006;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0}.button{font-size:15px;position:absolute;background:#9f9f9f;height:30px;width:50px;right:10px;bottom:10px;line-height:30px;text-align:center;color:#eee;box-shadow:0 2px 0 #0006;cursor:pointer}#contact,#settings,.card{text-shadow:0 1px 0 #0003;background:#efefef;width:300px;height:400px;box-shadow:0 10px #0003;position:absolute}.card_title{font-size:22.5px;text-align:center;color:#999;margin:10px 10px 0}.card_date{font-size:12px;color:#aaa;border-bottom:2px #aaa solid;margin:0 10px 5px;padding-bottom:5px}.card_txt,.txt{color:#777}.card_txt{font-size:15px;color:#777;margin:0 10px;overflow:auto;height:275px}.card_erase{width:60px;left:10px;background:#e23 !important;box-shadow:0 2px #b12 !important;color:#fff !important}#add_card{cursor:pointer}#contact,#settings,.expanded{position:fixed;left:calc(50% - 250px) !important;top:calc(50% - 250px) !important;width:500px;height:500px;z-index:2!important}.card_title_expanded{background:#ddd;padding:2px}.card_txt_expanded{height:360px;padding:10px;background:#ddd}a{color:#ddd;display:block}#contact,#settings{opacity:0;pointer-events:none}.header{height:40px;padding:0 10px;font-size:25px;line-height:40px;margin:15px;border-bottom:5px solid;color:#eee;font-size:16px}#bottomFooter p{padding-bottom:10px;margin:0}.switch{background:#999;width:60px;height:25px;margin:20px;cursor:pointer}.ball{background:#bbb;position:relative;bottom:5px;width:35px;height:35px;right:5px;border-radius:5px}.switch.active{background:#64a75c}.ball.active{background:#90f784;left:30px}</style>
+    <style>@import url(https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap);:focus{outline:0}body,html{background:#ccc;font-family:Rowdies;padding:0;margin:0}#top-footer{width:100%;height:70px;background:#efefef;box-shadow:0 10px #0003;display:flex;position:relative;z-index:1}#bottom-footer{color:#ddd;text-align:center;background:#333;position:absolute;width:100%;display:none}#title{margin:21.5px;font-size:20px;color:#999}#black_screen{z-index:1;background:#0006;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0}.button{font-size:15px;position:absolute;background:#9f9f9f;height:30px;width:50px;right:10px;bottom:10px;line-height:30px;text-align:center;color:#eee;box-shadow:0 2px 0 #0006;cursor:pointer}#add_card,#contact,#settings,.card{text-shadow:0 1px 0 #0003;background:#efefef;width:300px;height:400px;box-shadow:0 10px #0003;position:absolute}.card_title{font-size:22.5px;text-align:center;color:#999;margin:10px 10px 0}.card_date{font-size:12px;color:#aaa;border-bottom:2px #aaa solid;margin:0 10px 5px;padding-bottom:5px}.card_txt,.txt{color:#777}.card_txt{font-size:15px;color:#777;margin:0 10px;overflow:auto;height:275px}.card_erase{width:60px;left:10px;background:#e23!important;box-shadow:0 2px #b12!important;color:#fff!important}#add_card{cursor:pointer;display:none}#contact,#settings,.expanded{position:fixed;left:calc(50% - 250px)!important;top:calc(50% - 250px)!important;width:500px;height:500px;z-index:2!important}.card_title_expanded{background:#ddd;padding:2px}.card_txt_expanded{height:360px;padding:10px;background:#ddd}a{color:#ddd;display:block}#contact,#settings{opacity:0;pointer-events:none}.header{height:40px;padding:0 10px;font-size:25px;line-height:40px;margin:15px;border-bottom:5px solid;color:#eee;font-size:16px}#bottomFooter p{padding-bottom:10px;margin:0}.flex{display:flex}.t1{height:65px;display:table}.t2{display:table-cell;vertical-align:middle}.switch{background:#999;width:60px;height:25px;margin:20px;cursor:pointer}.ball{background:#bbb;position:relative;bottom:5px;width:35px;height:35px;right:5px;border-radius:5px}.switch.active{background:#64a75c}.ball.active{background:#90f784;left:30px}</style>
     <style id="dark-mode"></style>
 </head>
 
 <body>
-    <div id="top-footer">
-        <svg style="padding: 5px 10px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="0 0 50 50" width="60" height="60">
-            <defs>
-                <path d="M50 25C50 38.8 38.8 50 25 50C11.2 50 0 38.8 0 25C0 11.2 11.2 0 25 0C38.8 0 50 11.2 50 25Z"
-                    id="d2aJyobu2Y" />
-                <path d="M21.14 7.36L41.66 18.03L28.86 42.64L8.34 31.97L21.14 7.36Z" id="b12cMdJ2Db" />
-                <path d="M21.15 12.78L37.22 21.14L36.86 21.83L20.79 13.47L21.15 12.78Z" id="bkvgpkRlU" />
-                <path d="M18.45 17.98L34.51 26.34L34.15 27.03L18.08 18.67L18.45 17.98Z" id="bMZKAVGkB" />
-                <path d="M15.74 23.18L31.81 31.54L31.45 32.23L15.38 23.87L15.74 23.18Z" id="c2HYdPk4O5" />
-                <path d="M13.04 28.37L29.1 36.73L28.74 37.43L12.68 29.07L13.04 28.37Z" id="a1rReQ8HF" />
-            </defs>
-            <g>
-                <g>
-                    <g>
-                        <use xlink:href="#d2aJyobu2Y" opacity="1" fill="#0003" fill-opacity="1" />
-                    </g>
-                    <g>
-                        <use xlink:href="#b12cMdJ2Db" opacity="1" fill="#efefef" fill-opacity="1" />
-                    </g>
-                    <g>
-                        <use xlink:href="#bkvgpkRlU" opacity="1" fill="#7d7d7d" fill-opacity="1" />
-                    </g>
-                    <g>
-                        <use xlink:href="#bMZKAVGkB" opacity="1" fill="#7d7d7d" fill-opacity="1" />
-                    </g>
-                    <g>
-                        <use xlink:href="#c2HYdPk4O5" opacity="1" fill="#7d7d7d" fill-opacity="1" />
-                    </g>
-                    <g>
-                        <use xlink:href="#a1rReQ8HF" opacity="1" fill="#7d7d7d" fill-opacity="1" />
-                    </g>
-                </g>
-            </g>
-        </svg>
+    <header id="top-footer">
+        <div style="margin:5px 10px;background:#0003;border-radius:50%"><svg preserveAspectRatio="xMidYMid meet"viewBox="0 0 50 50"width="60"height="60"><path d="M21.14 7.36L41.66 18.03L28.86 42.64L8.34 31.97L21.14 7.36Z"fill="#efefef"/><path d="M21.15 12.78L37.22 21.14L36.86 21.83L20.79 13.47L21.15 12.78Z"fill="#777"/><path d="M18.45 17.98L34.51 26.34L34.15 27.03L18.08 18.67L18.45 17.98Z" fill="#777"/><path d="M15.74 23.18L31.81 31.54L31.45 32.23L15.38 23.87L15.74 23.18Z"fill="#777"/><path d="M13.04 28.37L29.1 36.73L28.74 37.43L12.68 29.07L13.04 28.37Z"fill="#777"/></svg></div>
         <span id="title">Local Notes</span>
         <div class="button" id="contact_button" style="width: 100px;bottom: 22.5px;right:125px">CONTACT</div>
         <div class="button" id="settings_button" style="width: 100px;bottom: 22.5px;">SETTINGS</div>
-    </div>
+    </header>
     <div id="settings">
-        <div style="display:flex;color:#888">
-            <div class="switch">
-                <div class="ball"></div>
-            </div>
-            <div style="height: 65px;display: table;">
-                <div style="display: table-cell;vertical-align: middle;">Enable a dark mode-ish style.</div>
-            </div>
+        <div class="txt flex">
+            <div class="switch"><div class="ball"></div></div>
+            <div class="t1"><div class="t2">Enable a dark mode-ish style.</div></div>
         </div>
-        <div style="display:flex;color:#888">
-            <div class="switch">
-                <div class="ball"></div>
-            </div>
-            <div style="height: 65px;display: table;">
-                <div style="display: table-cell;vertical-align: middle;">Keep the top footer fixed on top.</div>
-            </div>
+        <div class="txt flex">
+            <div class="switch"><div class="ball"></div></div>
+            <div class="t1"><div class="t2">Keep the top footer fixed on top.</div></div>
         </div>
-        <div style="display:flex;color:#888">
-            <div>
-                <div class="switch">
-                    <div class="ball"></div>
-                </div>
+        <div class="txt flex">
+            <div><div class="switch"><div class="ball"></div></div>
             </div>
-            <div style="height: 65px;display: table;">
-                <div style="display: table-cell;vertical-align: middle;">Make the notes stay in your window as you resize your browser (laggier).</div>
-            </div>
+            <div class="t1"><div class="t2">Make the notes stay in your window as you resize your browser (laggier).</div></div>
         </div>
         <div id="settings_back" class="button">BACK</div>
     </div>
+    <div id="add_card"><svg style="position:relative;left:100px"preserveAspectRatio="xMidYMid meet"viewBox="0 0 640 640"width="100"height="400"><path d="M640 420L420 420L420 640L220 640L220 420L0 420L0 220L220 220L220 0L420 0L420 220L640 220L640 220L640 420Z"fill="#0003"/></svg></div>
     <div id="contact">
-        <p style="padding: 0 20px 20px 20px;color:#999">I don't have a super fancy, omega nice contact website for you to contact me, so just contact me via Discord, or any of the following, really.</p>
+        <p style="padding: 0 20px 20px 20px;color:#999">I don't have a super fancy, nice contact website for you to contact me, so just contact me via Discord, or any of the following, really.</p>
         <div class="header" style="background:#9174e3;border-bottom-color:#6d58a8">DISCORD - Williek#5783</div>
         <div class="header" style="background:#eb8a36;border-bottom-color:#bd6e2a">REDDIT - WilliekTheEucalyptus</div>
         <div class="header" style="background:#2f3669;border-bottom-color:#181b36">FANDOM - Williek11, AKA Eucalyptus</div>
@@ -88,36 +43,14 @@
 
         <div id="contact_back" class="button">BACK</div>
     </div>
-    <div id="bottom-footer">
+    <section id="bottom-footer">
         <div style="padding:25px 0 35px 0;width:100%;font-size:35px">Projects</div>
         <p><a href="https://williek11.github.io">Home Page</a></p>
         <p><a href="https://williek11.github.io/htmlpreview.html">HTML Previewer</a></p>
         <p style="margin-bottom:75px"><a href="https://williek11.github.io/localNotes.html">Local Notes</a></p>
-    </div>
+    </section>
     <div id="black_screen"></div>
-    <script>document.addEventListener("contextmenu",function(e){e.preventDefault()},false);(function(){const E="addEventListener";var db;window.indexedDB=window.indexedDB||window.mozIndexedDB||window.webkitIndexedDB||window.msIndexedDB;window.IDBTransaction=window.IDBTransaction||window.webkitIDBTransaction||window.msIDBTransaction||{READ_WRITE:"readwrite"};window.IDBKeyRange=window.IDBKeyRange||window.webkitIDBKeyRange||window.msIDBKeyRange;var request=window.indexedDB.open("db",3);request[E]("error",function(e){console.log("bruh")});request[E]("upgradeneeded",function(e){db=e.target.result;db.createObjectStore("cards",{keyPath:"id"})});request[E]("success",function(e){db=e.target.result;onDBReadyState()});var body=document.body;var getClass=function(c,n){return document.getElementsByClassName(c)[n]};var getId=function(id){return document.getElementById(id)};var cardsInfo=[];var cards=[];function onDBReadyState(){var transaction=db.transaction("cards").objectStore("cards").getAll();transaction.onsuccess=function(){cards=transaction.result;startUp()}}function startUp(){var onresize=function(){};var frag=document.createElement("div");var newCard=function(card,made){var nC=document.createElement("div");nC.className="card";var cCaA=function(c,txt){var t=document.createElement("div");t.className=c;t.innerText=txt;nC.appendChild(t)};cCaA("card_title",card.title);cCaA("card_date",made.day+' / '+made.month+' / '+made.year);cCaA("card_txt",card.content);cCaA("card_edit button","EDIT");cCaA("card_erase button","ERASE");frag.appendChild(nC)};var l=cards.length;for(var i=0;i<l;i+=1){newCard(cards[i],cards[i].made)}var addCard=document.createElement("div");addCard.id="add_card";addCard.className="card";addCard.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" style="position:relative;left:100px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="100" height="400"><defs><path d="M640 420L420 420L420 640L220 640L220 420L0 420L0 220L220 220L220 0L420 0L420 220L640 220L640 220L640 420Z" id="b54OFTMGRM"/></defs><g><g><g><use xlink:href="#b54OFTMGRM" opacity="1" fill="#0003" /></g></g></g></svg>`;frag.appendChild(addCard);body.appendChild(frag);var bS=getId("black_screen");var bSS=bS.style;var popUp=function(name){getId(name).style="opacity:1;pointer-events:auto";bSS.opacity="1";bSS.pointerEvents="auto"};getId("settings_button").addEventListener("click",function(){popUp("settings")});getId("contact_button").addEventListener("click",function(){popUp("contact")});var close_popUp=function(name){getId(name).style="opacity:0;pointer-events:none";bSS.opacity="0";bSS.pointerEvents="none"};getId("settings_back").addEventListener("click",function(){close_popUp("settings")});getId("contact_back").addEventListener("click",function(){close_popUp("contact")});var edit_card=function(i){var cI=cardsInfo[i];cI[3].contentEditable="true";cI[5].contentEditable="true";cI[3].className="card_title card_title_expanded";cI[5].className="card_txt card_txt_expanded";cI[6].innerHTML="DONE";bSS.opacity="1";bSS.pointerEvents="auto";getClass('card',i).className="card expanded"};var done_card_edit=function(i){var cI=cardsInfo[i];cards[i].title=cI[3].innerHTML;cards[i].content=cI[5].innerHTML;console.log(cards);cI[3].contentEditable="false";cI[5].contentEditable="false";cI[3].className="card_title";cI[5].className="card_txt";cI[6].innerHTML="EDIT";bSS.opacity="0";bSS.pointerEvents="none";getClass('card',i).className="card";var request=db.transaction("cards").objectStore("cards").get(i);request[E]("error",function(e){console.log(e)});request[E]("success",function(e){var data=e.target.result;data.title=cards[i].title;data.content=cards[i].content;db.transaction(["cards"],"readwrite").objectStore("cards").put(data)});};function notesPerLine(){return Math.floor(window.innerWidth/320)}function calcLine(i){return Math.floor(i/notesPerLine())}function calcColumn(i){while(i>notesPerLine()){i=i-notesPerLine()}if(i===0){return 0}else{return i-1}}onresize=function(){addCard.style.left=`${20+calcColumn(l+1)*(300+20)}px`;addCard.style.top=`${110+calcLine(l)*(400+50)}px`;for(var i=0;i<l;i+=1){card=getClass("card",i);cardsInfo[i]=[20+calcColumn(i+1)*(300+20),110+calcLine(i)*(400+50),card.style,getClass("card_title",i),getClass("card_date",i),getClass("card_txt",i),getClass("card_edit",i)]}getId("bottom-footer").style=`top:${20+(calcLine(l))*450+400+40+100}px;display:block`;for(var i=0;i<l;i+=1){var card=getClass("card",i);card.setAttribute("data-id",i);card.setAttribute("data-line",calcColumn(i+1));card.setAttribute("data-column",calcLine(i+1)-1);card.style.left=cardsInfo[i][0]+"px";card.style.top=cardsInfo[i][1]+"px"}};onresize();var cardsUpdate=function(){while(frag.lastElementChild){frag.removeChild(frag.lastElementChild)}for(var i=0;i<l;i+=1){newCard(cards[i],cards[i].made)}addCard.id="add_card";addCard.className="card";addCard.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" style="position:relative;left:100px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="100" height="400"><defs><path d="M640 420L420 420L420 640L220 640L220 420L0 420L0 220L220 220L220 0L420 0L420 220L640 220L640 220L640 420Z" id="b54OFTMGRM"/></defs><g><g><g><use xlink:href="#b54OFTMGRM" opacity="1" fill="#0003" /></g></g></g></svg>`;frag.appendChild(addCard);for(var i=0;i<l;i+=1){const self=i;getClass("card_edit",self).addEventListener("click",function(){if(getClass("card_edit",self).innerHTML==="EDIT"){edit_card(self)}else{done_card_edit(self)}});getClass("card_erase",self).addEventListener("click",function(){const len=l;l-=1;cards.splice(self,1);for(var j=self;j<len-1;j+=1){cards[j].id-=1}var objStore=db.transaction(["cards"],"readwrite").objectStore("cards");objStore.delete(len-1);for(var j=0;j<len-1;j+=1){objStore.put(cards[j])}cardsUpdate()})}onresize()};var newCardEvent=function(){var dt=new Date();cards[l]={id:l,title:"New",made:{day:dt.getDate()+1,month:dt.getMonth()+1,year:dt.getFullYear()},content:"Empty :c"};db.transaction(["cards"],"readwrite").objectStore("cards").add({id:l,title:"New",made:{day:dt.getDate()+1,month:dt.getMonth()+1,year:dt.getFullYear()},content:"Empty :c"});setTimeout(()=>{l+=1;cardsUpdate()},5)};for(var i=0;i<l;i+=1){const self=i;getClass("card_edit",self).addEventListener("click",function(){if(getClass("card_edit",self).innerHTML==="EDIT"){edit_card(self)}else{done_card_edit(self)}});getClass("card_erase",self).addEventListener("click",function(){const len=l;l-=1;cards.splice(self,1);for(var j=self;j<len-1;j+=1){cards[j].id-=1}var objStore=db.transaction(["cards"],"readwrite").objectStore("cards");objStore.delete(len-1);for(var j=0;j<len-1;j+=1){objStore.put(cards[j])}cardsUpdate()})}addCard.addEventListener("click",newCardEvent);var settings={"dark_mode":[,0,function(){getId("dark-mode").innerHTML=`
-
-body,html{background: #131315}
-#top-footer{background: #343435;box-shadow: 0 10px #232325}
-#bottom-footer{color:#ddd;text-align:center;background:#161719;position:absolute;width:100%}
-#title{color:#ddd}
-#title::selection,.button::selection {background: #fff6;color: #000;}
-.card, #settings, #contact{text-shadow: 0 1px 0 #fff2;background:#343435;box-shadow: 0 10px #232325}
-.card_title{color:#ccc}
-.card_date{color:#aaa;border-bottom:2px #ccc solid}
-.card_txt, .txt{color:#ddd;}
-.button{background:#ccc;color: #333;box-shadow: 0 2px 0 #fff4}
-.card_title_expanded{background: #0002}
-.card_txt_expanded{background: #0002}
-a{color:#ddd;display:block}
-.header {border-bottom:5px solid;color:#eee;}
-
-.switch {background: #999;width: 60px;height: 25px;margin: 20px;cursor:pointer}
-.ball {background: #bbb;position: relative;bottom: 5px;width: 35px;height: 35px;right: 5px;border-radius: 5px;}
-.switch.active {background:#64a75c;}
-.ball.active {background:#90f784;left: 30px;}
-
-`},function(){getId("dark-mode").innerHTML=``}],"top_footer_fixed":[,1,function(){getId("top-footer").style.position="fixed"},function(){getId("top-footer").style.position="absolute"}],"dynamic_card_changing":[,2,function(){window.addEventListener("resize",onresize)},function(){window.removeEventListener("resize",onresize)}]};var settingsStr=localStorage.settings;if(!settingsStr||settingsStr.length!=3){settingsStr="fff";localStorage.settings=settingsStr}function updateSettings(){settingsStr=settings.dark_mode[0]+settings.top_footer_fixed[0]+settings.dynamic_card_changing[0];localStorage.settings=settingsStr}var count=0;for(var key in settings){const s=key;const ball=getClass("ball",settings[s][1]);const swit=getClass("switch",settings[s][1]);settings[s][0]=localStorage.settings[count];count++;if(settings[key][0]==="t"){ball.className="ball active";swit.className="switch active";settings[s][2]()}getClass("switch",settings[s][1]).addEventListener("click",function(){if(settings[s][0]==="f"){ball.className="ball active";swit.className="switch active";settings[s][0]="t";settings[s][2]();updateSettings()}else{ball.className="ball";swit.className="switch";settings[s][0]="f";settings[s][3]();updateSettings()}})}}}());</script>
+    <script>!function(){const t="addEventListener";var e;document[t]("contextmenu",function(t){t.preventDefault()},!1);var n=window.indexedDB.open("Local Notes",1);n[t]("upgradeneeded",function(t){(e=t.target.result).createObjectStore("cards",{keyPath:"id"})}),n[t]("success",function(n){var i;e=n.target.result,(i=e.transaction("cards").objectStore("cards").getAll())[t]("success",function(){d=i.result,function(){for(var n=document.createElement("div"),i=function(t,e){var a=document.createElement("div");a.className="card";var c=function(t,e){var n=document.createElement("div");n.className=t,n.innerText=e,a.appendChild(n)};c("card_title",t.title),c("card_date",e.day+" / "+e.month+" / "+e.year),c("card_txt",t.content),c("card_edit button","EDIT"),c("card_erase button","ERASE"),n.appendChild(a)},s=d.length,l=0;l<s;l+=1)i(d[l],d[l].made);o("add_card").style.display="block",a.appendChild(n);var u=o("black_screen").style;function f(t){o(t).style="opacity:1;pointer-events:auto",u.opacity="1",u.pointerEvents="auto"}function p(t){o(t).style="opacity:0;pointer-events:none",u.opacity="0",u.pointerEvents="none"}o("settings_button")[t]("click",function(){f("settings")}),o("contact_button")[t]("click",function(){f("contact")}),o("settings_back")[t]("click",function(){p("settings")}),o("contact_back")[t]("click",function(){p("contact")});var b,m=function(t){var e=r[t];e[3].contentEditable="true",e[5].contentEditable="true",e[3].className="card_title card_title_expanded",e[5].className="card_txt card_txt_expanded",e[6].innerHTML="DONE",u.opacity="1",u.pointerEvents="auto",c("card",t).className="card expanded"},v=function(n){var a=r[n];d[n].title=a[3].innerHTML,d[n].content=a[5].innerHTML,a[3].contentEditable="false",a[5].contentEditable="false",a[3].className="card_title",a[5].className="card_txt",a[6].innerHTML="EDIT",u.opacity="0",u.pointerEvents="none",c("card",n).className="card";var o=e.transaction("cards").objectStore("cards").get(n);o[t]("success",function(t){var a=t.target.result;a.title=d[n].title,a.content=d[n].content,a.id=n,e.transaction(["cards"],"readwrite").objectStore("cards").put(a)})};function g(t){return Math.floor(t/b)}function _(t){for(;t>b;)t-=b;return 0===t?0:t-1}var x=o("add_card");onresize=function(){b=Math.floor(window.innerWidth/320),x.style.left=`${20+320*_(s+1)}px`,x.style.top=`${110+450*g(s)}px`;for(var t=0;t<s;t+=1)e=c("card",t),r[t]=[20+320*_(t+1),110+450*g(t),e.style,c("card_title",t),c("card_date",t),c("card_txt",t),c("card_edit",t)];o("bottom-footer").style=`top:${20+450*g(s)+400+40+100}px;display:block`;for(var t=0;t<s;t+=1){var e=c("card",t);e.style.left=r[t][0]+"px",e.style.top=r[t][1]+"px"}},onresize();for(var h=function(){for(;n.lastElementChild;)n.removeChild(n.lastElementChild);for(var a=0;a<s;a+=1)i(d[a],d[a].made);for(var a=0;a<s;a+=1){const n=a;c("card_edit",n)[t]("click",function(){"EDIT"===c("card_edit",n).innerHTML?m(n):v(n)}),c("card_erase",n)[t]("click",function(){const t=s;s-=1,d.splice(n,1);var a=e.transaction(["cards"],"readwrite").objectStore("cards");a.delete(t-1);for(var c=0;c<t-1;c+=1){var o=d[c];o.id=c,a.put(o)}h()})}onresize()},l=0;l<s;l+=1){const n=l;c("card_edit",n)[t]("click",function(){"EDIT"===c("card_edit",n).innerHTML?m(n):v(n)}),c("card_erase",n)[t]("click",function(){s-=1,d.splice(n,1);for(var t=n;t<s;t+=1)d[t].id-=1;var a=e.transaction(["cards"],"readwrite").objectStore("cards");a.delete(s);for(var t=0;t<s;t+=1)a.put(d[t]);h()})}x[t]("click",function(){var t=new Date;d[s]={title:"New",made:{day:t.getDate()+1,month:t.getMonth()+1,year:t.getFullYear()},content:"Empty :c"},e.transaction(["cards"],"readwrite").objectStore("cards").add({id:s,title:"New",made:{day:t.getDate()+1,month:t.getMonth()+1,year:t.getFullYear()},content:"Empty :c"}),setTimeout(()=>{s+=1,h()},5)});var y={dark_mode:[,0,function(){o("dark-mode").innerHTML="body,html{background: #232325}#top-footer{background: #343435;box-shadow: 0 10px #161719}#bottom-footer{color:#ddd;text-align:center;background:#161719;position:absolute;width:100%}#title{color:#ddd}.card, #add_card, #settings, #contact{text-shadow: 0 1px 0 #fff2;background:#343435;box-shadow: 0 10px #161719}.card_title{color:#ccc}.card_date{color:#aaa;border-bottom:2px #ccc solid}.card_txt, .txt{color:#ddd;}.button{background:#ccc;color: #333;box-shadow: 0 2px 0 #fff4}.card_title_expanded{background: #0002}.card_txt_expanded{background: #0002}a{color:#ddd;display:block}.header {border-bottom:5px solid;color:#eee;}.switch {background: #999;width: 60px;height: 25px;margin: 20px;cursor:pointer}.ball {background: #bbb;position: relative;bottom: 5px;width: 35px;height: 35px;right: 5px;border-radius: 5px;}.switch.active {background:#64a75c;}.ball.active {background:#90f784;left: 30px;}"},function(){o("dark-mode").innerHTML=""}],top_footer_fixed:[,1,function(){o("top-footer").style.position="fixed"},function(){o("top-footer").style.position="absolute"}],dynamic_card_changing:[,2,function(){window[t]("resize",onresize)},function(){window.removeEventListener("resize",onresize)}]},k=localStorage.settings;function w(){k=y.dark_mode[0]+y.top_footer_fixed[0]+y.dynamic_card_changing[0],localStorage.settings=k}k&&3==k.length||(k="fff",localStorage.settings=k);var E=0;for(var N in y){const e=N,n=c("ball",y[e][1]),a=c("switch",y[e][1]);y[e][0]=localStorage.settings[E],E++,"t"===y[N][0]&&(n.className="ball active",a.className="switch active",y[e][2]()),c("switch",y[e][1])[t]("click",function(){"f"===y[e][0]?(n.className="ball active",a.className="switch active",y[e][0]="t",y[e][2](),w()):(n.className="ball",a.className="switch",y[e][0]="f",y[e][3](),w())})}}()})});var a=document.body,c=function(t,e){return document.getElementsByClassName(t)[e]},o=function(t){return document.getElementById(t)},r=[],d=[]}();</script>
 </body>
 
 </html>
