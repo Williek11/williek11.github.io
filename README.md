@@ -1,3 +1,5 @@
+All these projects will be delayed. I am currently working on a raw JavaScript HTML5 game, which will take a while to get a proof-of-concept, artwork, Math, and more.
+
 # Williek11.github.io
 https://williek11.github.io
 
