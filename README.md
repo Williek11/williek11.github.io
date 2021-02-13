@@ -1,4 +1,5 @@
 All these projects will be delayed. I am currently working on a raw JavaScript HTML5 game, which will take a while to get a proof-of-concept, artwork, Math, and more.
+Update 12/02/2021: I will be updating the source code for all pages until the end of this month.
 
 # Williek11.github.io
 https://williek11.github.io
@@ -35,4 +36,5 @@ And as for the project, the following will soon be added:
 * Create your own notes (duh)
 * CSS improvement (what is a good website without good visual aspects?)
 * Make it work off-line
+* Make it downloadable
 * Simple markup language
