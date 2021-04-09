@@ -1,11 +1,7 @@
-All these projects will be delayed. I am currently working on a raw JavaScript HTML5 game, which will take a while to get a proof-of-concept, artwork, Math, and more.
-Update 12/02/2021: I will be updating the source code for all pages until the end of this month.
-
-# Williek11.github.io
-https://williek11.github.io
-
-A repository for random projects which I feel like they would be nice for the world to see.
-
+<!-- # Williek11.github.io
+https://williek11.github.io -->
+This is just a repository for random projects which I feel like they would be nice for the world to see.
+<!--
 # Html Previewer
 https://williek11.github.io/htmlpreview.html
 
@@ -37,4 +33,4 @@ And as for the project, the following will soon be added:
 * CSS improvement (what is a good website without good visual aspects?)
 * Make it work off-line
 * Make it downloadable
-* Simple markup language
+* Simple markup language -->
