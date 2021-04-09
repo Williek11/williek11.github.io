@@ -1,6 +1,6 @@
 <!-- # Williek11.github.io
 https://williek11.github.io -->
-This is just a repository for random projects which I feel like they would be nice for the world to see.
+This is just a repository for random projects<!-- which I feel like they would be nice for the world to see -->.
 <!--
 # Html Previewer
 https://williek11.github.io/htmlpreview.html
