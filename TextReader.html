@@ -1,0 +1,59 @@
+/* Simple text reader and downloader for future purposes */
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="title">Title:</label><br>
+    <input id="title" fname="title" type="text"></input><br><br>
+    <label for="text">Content:</label><br>
+    <input id="text" fname="text" type="text"></input>
+    <br><br>
+    <button id="button">Download</button>
+    <input type="file" name="inputfile" id="inputfile">
+    <div id="output"></div>
+    <script>
+        const doc = document;
+        const body = doc.body;
+        const head = doc.head;
+
+        const downloadElement = document.createElement("a");
+        downloadElement.style.display = "none";
+
+        function getId(i) { return doc.getElementById(i) }
+
+        function download(filename, text) {
+            downloadElement.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
+            downloadElement.setAttribute("download", filename);
+
+            body.appendChild(downloadElement);
+
+            downloadElement.click();
+
+            body.removeChild(downloadElement);
+        }
+
+        getId("button").addEventListener("click", function () {
+            download(getId("title").value, getId("text").value)
+        })
+
+        getId("inputfile").addEventListener("change", function () {
+            if (this.files[0].type !== "text/plain") { console.warn("File type is not text/plain. You lose."); return }
+
+            let fr = new FileReader();
+            fr.readAsText(this.files[0]);
+            fr.onload = function () {
+                console.log(fr.result);
+            }
+        })
+    </script>
+</body>
+
+</html>
